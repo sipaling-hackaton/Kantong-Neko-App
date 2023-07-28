@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+// Controller
+use App\Models\GameController;
+use App\Models\TaskController;
+
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -15,6 +19,12 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('game', GameController::class)->name('game'); //page game
+
+Route::get('task', TaskController::class)->name('task'); //page task
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -35,4 +45,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
