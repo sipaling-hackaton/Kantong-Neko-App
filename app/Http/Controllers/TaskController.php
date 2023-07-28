@@ -10,6 +10,11 @@ class TaskController extends Controller
 {
     public function __invoke(Request $request)
     {
-        return Inertia::render('Task/Task');
+        return Inertia::render("Task/Task");
+    }
+
+    public function QuestRewards(Request $request)
+    {
+        return Inertia::render("Task/Quest");
     }
 }

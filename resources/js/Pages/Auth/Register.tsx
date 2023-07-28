@@ -236,13 +236,14 @@ export default function Register(props: any) {
                 >
                     Daftar
                 </button>
-
-                <button
-                    className=" mt-4 w-full p-2 bg-[#58cc02] text-white rounded-[2rem]"
-                    disabled={processing}
-                >
-                    Sudah Punya Akun
-                </button>
+                <Link href="/login">
+                    <button
+                        className=" mt-4 w-full p-2 bg-[#58cc02] text-white rounded-[2rem]"
+                        disabled={processing}
+                    >
+                        Sudah Punya Akun
+                    </button>
+                </Link>
             </form>
         </div>
     );
