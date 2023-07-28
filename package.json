@@ -27,7 +27,9 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@lottiefiles/react-lottie-player": "^3.5.3",
         "antd": "^5.7.3",
-        "concurrently": "^8.2.0"
+        "concurrently": "^8.2.0",
+        "lottie-react": "^2.4.0"
     }
 }

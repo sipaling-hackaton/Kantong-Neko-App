@@ -4,7 +4,7 @@ import { PropsWithChildren } from "react";
 import BottomNav from "./Components/BottomNav";
 import TopNav from "./Components/TopNav";
 
-export default function Guest({ children }: PropsWithChildren) {
+export default function AppLayout({ children }: PropsWithChildren) {
     return (
         <div
             style={{
@@ -13,8 +13,7 @@ export default function Guest({ children }: PropsWithChildren) {
                 paddingBottom: "calc(10vh + 1rem)",
             }}
         >
-            <TopNav />
-            <div className="    ">{children}</div>
+            <div className="">{children}</div>
 
             <BottomNav />
         </div>
