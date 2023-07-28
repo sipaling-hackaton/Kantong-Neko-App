@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Inertia\Inertia;
 
-class TaskController extends Model
+class TaskController extends Controller
 {
     public function __invoke(Request $request)
     {
