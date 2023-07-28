@@ -20,7 +20,10 @@ use Inertia\Inertia;
 |
 */
 
-Route::get("game", GameController::class)->name("game"); //page game
+Route::get("first", function () {
+    return Inertia::render("Home/First");
+})->name("first");
+
 
 Route::get('game', GameController::class)->name('game'); //page game
 Route::get('game/minigames', [GameController::class, 'Minigames']); //page minigames
@@ -28,11 +31,13 @@ Route::get('game/minigames/eat', [GameController::class, 'EatMiniGame']); //page
 Route::get('game/wardrobe', [GameController::class, 'Wardrobe']); //page minigames
 
 Route::get("task", TaskController::class)->name("task"); //page task
+Route::middleware(["auth", "verified"])->group(function () {
+    Route::get("game", GameController::class)->name("game"); //page game
 
-Route::get("/", HomeController::class)->name("home");
 
-Route::get("first", function () {
-    return Inertia::render("Home/First");
+    Route::get("task", TaskController::class)->name("task"); //page task
+
+    Route::get("/", HomeController::class)->name("home");
 });
 
 // Route::get("/", function () {

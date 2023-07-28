@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Http;
 
 class RegisteredUserController extends Controller
 {
@@ -21,7 +22,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register');
+        return Inertia::render("Auth/Register");
     }
 
     /**
@@ -32,15 +33,42 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:'.User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            "ktp_id" => "required|string|max:255|unique:" . User::class,
+            "username" => "required|string|max:255|unique:" . User::class,
+            "phone_number" => "required|string|max:255",
+            "birthdate" => "required|date",
+            "gender" => "required|in:0,1",
+            "email" => "required|string|email|max:255|unique:" . User::class,
+            "password" => ["required", "confirmed", Rules\Password::defaults()],
         ]);
 
+        $res = Http::post(env("HACKATHON_API_URL") . "/user/auth/create", [
+            "ktpId" => $request->ktp_id,
+            "username" => $request->username,
+            "loginPassword" => $request->password,
+            "phoneNumber" => $request->phone_number,
+            "birthDate" => $request->birthdate,
+            "gender" => $request->gender,
+            "email" => $request->email,
+        ]);
+
+        if (
+            !$res->successful() &&
+            $res->json()["success"] == Constant::STATUS_FAILED
+        ) {
+            return redirect()
+                ->back()
+                ->withErrors("Gagal membuat akun baru");
+        }
+
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            "ktp_id" => $request->ktp_id,
+            "username" => $request->username,
+            "phone_number" => $request->phone_number,
+            "birthdate" => $request->birthdate,
+            "gender" => $request->gender,
+            "email" => $request->email,
+            "password" => Hash::make($request->password),
         ]);
 
         event(new Registered($user));

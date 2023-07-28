@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\AccountSeeder;
 use Database\Seeders\TermsSavingsSeeder;
 use Database\Seeders\MerchantPartnersSeeder;
+use Database\Seeders\UserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            UserSeeder::class,
             AccountSeeder::class,
             TermsSavingsSeeder::class,
             MerchantPartnersSeeder::class,

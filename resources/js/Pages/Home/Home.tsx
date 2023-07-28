@@ -4,7 +4,8 @@ import animationData from "./Assets/animation_lkmhtcno.json";
 import bg from "./Assets/bg.png";
 import { useState } from "react";
 
-export default function Home() {
+export default function Home(props: any) {
+    console.log(props);
     const [blur, setBlur] = useState(true);
     return (
         <div className="relative bg-[#f5f0e8] min-h-screen">

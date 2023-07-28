@@ -5,8 +5,8 @@ namespace App\Helpers;
 class Enum
 {
     public const GENDER = [
-        "Male" => "male",
-        "Female" => "female",
+        "Man" => "0",
+        "Woman" => "1",
     ];
 
     public const ACTIVITY_STATUS = [

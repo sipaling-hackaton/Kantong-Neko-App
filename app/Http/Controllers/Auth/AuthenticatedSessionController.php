@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Http;
+use App\Helpers\Constant;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -19,9 +21,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Login', [
-            'canResetPassword' => Route::has('password.request'),
-            'status' => session('status'),
+        return Inertia::render("Auth/Login", [
+            "canResetPassword" => Route::has("password.request"),
+            "status" => session("status"),
         ]);
     }
 
@@ -30,11 +32,35 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        // Login to the user's account via Hackathon API
+        $response = Http::post(env("HACKATHON_API_URL") . "/user/auth/token", [
+            "username" => $request->username,
+            "loginPassword" => $request->password,
+        ]);
 
-        $request->session()->regenerate();
+        if (
+            $response->successful() &&
+            $response->json()["success"] == Constant::STATUS_SUCCESS
+        ) {
+            $res = $response->json();
+            $request->session()->put("token", $res["data"]["accessToken"]);
+            $request
+                ->session()
+                ->put(
+                    "authPasport",
+                    encrypt([$request->username, $request->password])
+                );
+            $request->authenticate();
+            $request->session()->regenerate();
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()
+            ->back()
+            ->withErrors([
+                "username" =>
+                    "Username atau kata sandi yang Anda masukkan salah",
+            ]);
     }
 
     /**
@@ -42,12 +68,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        Auth::guard("web")->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect("/");
     }
 }
