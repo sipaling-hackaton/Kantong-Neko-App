@@ -4,7 +4,7 @@ import { PropsWithChildren } from "react";
 import BottomNav from "./Components/BottomNav";
 import TopNav from "./Components/TopNav";
 
-export default function Guest({ children }: PropsWithChildren) {
+export default function AppLayout({ children }: PropsWithChildren) {
     return (
         <div
             style={{
@@ -12,8 +12,7 @@ export default function Guest({ children }: PropsWithChildren) {
                 width: "100%",
             }}
         >
-            <TopNav />
-            <div className="    ">{children}</div>
+            <div className="">{children}</div>
             <div
                 className="bg-[#f5f0e8]"
                 style={{ height: "calc(10vh + 1rem)", width: "100vw" }}

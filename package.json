@@ -27,11 +27,13 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@lottiefiles/react-lottie-player": "^3.5.3",
         "antd": "^5.7.3",
         "concurrently": "^8.2.0",
         "framer-motion": "^10.14.0",
         "sass": "^1.64.1",
         "styled-components": "^6.0.5",
-        "use-sound": "^4.0.1"
+        "use-sound": "^4.0.1",
+        "lottie-react": "^2.4.0"
     }
 }

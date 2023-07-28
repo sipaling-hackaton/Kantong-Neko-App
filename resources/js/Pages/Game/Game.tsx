@@ -35,6 +35,4 @@ export default function Game() {
     </div>;
 }
 
-
-
 Game.layout = (page: any, logo: any) => <Guest children={page} />;
