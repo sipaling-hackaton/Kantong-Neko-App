@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 // Controller
-use App\Models\GameController;
-use App\Models\TaskController;
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\TaskController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +22,9 @@ use Inertia\Inertia;
 
 
 Route::get('game', GameController::class)->name('game'); //page game
+Route::get('game/minigames', [GameController::class, 'Minigames']); //page minigames
+Route::get('game/minigames/eat', [GameController::class, 'EatMiniGame']); //page minigames
+
 
 Route::get('task', TaskController::class)->name('task'); //page task
 
