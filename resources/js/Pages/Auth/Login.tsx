@@ -33,7 +33,7 @@ export default function Login({
     };
 
     return (
-        <GuestLayout>
+        <div className="bg-[#ff8400] min-h-screen flex flex-col justify-center items-center">
             <Head title="Log in" />
 
             {status && (
@@ -41,10 +41,17 @@ export default function Login({
                     {status}
                 </div>
             )}
+            <div className="text-white">
+                <label>Masuk</label>
+            </div>
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel
+                        className="text-white"
+                        htmlFor="email"
+                        value="Email"
+                    />
 
                     <TextInput
                         id="email"
@@ -61,7 +68,11 @@ export default function Login({
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel
+                        className="text-white"
+                        htmlFor="password"
+                        value="Password"
+                    />
 
                     <TextInput
                         id="password"
@@ -91,22 +102,16 @@ export default function Login({
                     </label>
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    {/* {canResetPassword && (
-                        <Link
-                            href={route("password.request")}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )} */}
-
-                    <PrimaryButton className="ml-4">Register</PrimaryButton>
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
-                </div>
+                <button
+                    className=" mt-4 w-full p-2 bg-[#58cc02] text-white rounded-[2rem]"
+                    disabled={processing}
+                >
+                    Masuk
+                </button>
+                <button className="mt-4 p-2 w-full bg-[#58cc02] text-white rounded-[2rem]">
+                    Sudah Punya Akun
+                </button>
             </form>
-        </GuestLayout>
+        </div>
     );
 }
