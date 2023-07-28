@@ -31,12 +31,20 @@ export default function Register() {
     };
 
     return (
-        <GuestLayout>
+        <div className="bg-[#ff8400] min-h-screen flex flex-col justify-center items-center text-white">
             <Head title="Register" />
+
+            <div className="text-white">
+                <InputLabel className="text-white">Daftar</InputLabel>
+            </div>
 
             <form onSubmit={submit}>
                 <div className="mt-4">
-                    <InputLabel htmlFor="ktpId" value="ktpId" />
+                    <InputLabel
+                        className="text-white"
+                        htmlFor="ktpId"
+                        value="KTP ID"
+                    />
 
                     <TextInput
                         id="ktpId"
@@ -53,7 +61,11 @@ export default function Register() {
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="username" value="Username" />
+                    <InputLabel
+                        className="mt-2 text-white"
+                        htmlFor="username"
+                        value="Username"
+                    />
 
                     <TextInput
                         id="name"
@@ -70,7 +82,11 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="phoneNumber" value="phoneNumber" />
+                    <InputLabel
+                        className="mt-2 text-white"
+                        htmlFor="phoneNumber"
+                        value="Phone Number"
+                    />
 
                     <TextInput
                         id="phoneNumber"
@@ -87,7 +103,11 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="birthDate" value="birthDate" />
+                    <InputLabel
+                        className="mt-2 text-white"
+                        htmlFor="birthDate"
+                        value="Birth Date"
+                    />
 
                     <TextInput
                         id="birthDate"
@@ -104,34 +124,43 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="birthDate" value="birthDate" />
-
-                    <TextInput
-                        id="birthDate"
-                        type="radio"
-                        name="birthDate"
-                        value={"Perempuan"}
-                        className="mt-1 block w-full"
-                        autoComplete="birthDate"
-                        onClick={(e) => setData("birthDate", e.target.value)}
-                        required
+                    <InputLabel
+                        className="mt-2 text-white"
+                        htmlFor="gender"
+                        value="Gender"
                     />
-                    <TextInput
-                        id="birthDate"
-                        type="radio"
-                        name="birthDate"
-                        value={"Laki - laki"}
-                        className="mt-1 block w-full"
-                        autoComplete="birthDate"
-                        onClick={(e) => setData("birthDate", e.target.value)}
-                        required
-                    />
+                    <div className="flex gap-1">
+                        <TextInput
+                            id="gender"
+                            type="radio"
+                            name="gender"
+                            className="mt-1 block "
+                            autoComplete="gender"
+                            onClick={() => setData("gender", 1)}
+                        />
+                        <span>Perempuan</span>
+                    </div>
+                    <div className="flex gap-1">
+                        <TextInput
+                            id="gender"
+                            type="radio"
+                            name="gender"
+                            className="mt-1 block "
+                            autoComplete="gender"
+                            onClick={() => setData("gender", 0)}
+                        />
+                        <span>Laki - Laki</span>
+                    </div>
 
                     <InputError message={errors.birthDate} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel
+                        className="mt-2 text-white"
+                        htmlFor="password"
+                        value="Password"
+                    />
 
                     <TextInput
                         id="password"
@@ -149,6 +178,7 @@ export default function Register() {
 
                 <div className="mt-4">
                     <InputLabel
+                        className="mt-2 text-white"
                         htmlFor="password_confirmation"
                         value="Confirm Password"
                     />
@@ -172,19 +202,20 @@ export default function Register() {
                     />
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    <Link
-                        href={route("login")}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Already registered?
-                    </Link>
+                <button
+                    className=" mt-4 w-full p-2 bg-[#58cc02] text-white rounded-[2rem]"
+                    disabled={processing}
+                >
+                    Daftar
+                </button>
 
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        Register
-                    </PrimaryButton>
-                </div>
+                <button
+                    className=" mt-4 w-full p-2 bg-[#58cc02] text-white rounded-[2rem]"
+                    disabled={processing}
+                >
+                    Sudah Punya Akun
+                </button>
             </form>
-        </GuestLayout>
+        </div>
     );
 }
