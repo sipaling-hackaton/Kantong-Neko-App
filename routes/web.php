@@ -21,14 +21,16 @@ use Inertia\Inertia;
 |
 */
 
-Route::get("game", GameController::class)->name("game"); //page game
-
-Route::get("task", TaskController::class)->name("task"); //page task
-
-Route::get("/", HomeController::class)->name("home");
-
 Route::get("first", function () {
     return Inertia::render("Home/First");
+})->name("first");
+
+Route::middleware(["auth", "verified"])->group(function () {
+    Route::get("game", GameController::class)->name("game"); //page game
+
+    Route::get("task", TaskController::class)->name("task"); //page task
+
+    Route::get("/", HomeController::class)->name("home");
 });
 
 // Route::get("/", function () {

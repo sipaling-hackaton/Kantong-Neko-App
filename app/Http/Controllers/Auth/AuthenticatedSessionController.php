@@ -33,27 +33,34 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         // Login to the user's account via Hackathon API
-        $reponse = Http::post(env("HACKATHON_API_URL") . "/user/auth/token", [
-            "username" => $request->email,
+        $response = Http::post(env("HACKATHON_API_URL") . "/user/auth/token", [
+            "username" => $request->username,
             "loginPassword" => $request->password,
         ]);
 
-        if ($response->successfull()) {
+        if (
+            $response->successful() &&
+            $response->json()["success"] == Constant::STATUS_SUCCESS
+        ) {
             $res = $response->json();
-            $request->session()->put("token", $res["token"]);
-
+            $request->session()->put("token", $res["data"]["accessToken"]);
+            $request
+                ->session()
+                ->put(
+                    "authPasport",
+                    encrypt([$request->username, $request->password])
+                );
+            $request->authenticate();
+            $request->session()->regenerate();
             return redirect()->intended(RouteServiceProvider::HOME);
         }
 
         return redirect()
             ->back()
-            ->withErrors("Invalid credentials");
-
-        // $request->authenticate();
-
-        // $request->session()->regenerate();
-
-        // return redirect()->intended(RouteServiceProvider::HOME);
+            ->withErrors([
+                "username" =>
+                    "Username atau kata sandi yang Anda masukkan salah",
+            ]);
     }
 
     /**

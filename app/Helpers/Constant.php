@@ -15,4 +15,8 @@ class Constant
         "createTransaction" => "/bankAccount/transaction/create",
         "getTransactionInfo" => "/bankAccount/transaction/info",
     ];
+
+    public const STATUS_SUCCESS = 1;
+
+    public const STATUS_FAILED = 0;
 }

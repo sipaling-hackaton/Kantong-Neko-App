@@ -6,13 +6,13 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 
-export default function Register() {
+export default function Register(props: any) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        ktpId: "",
+        ktp_id: "",
         username: "",
-        phoneNumber: "",
-        birthDate: "",
-        gender: 0,
+        phone_number: "",
+        birthdate: "",
+        gender: null,
         email: "",
         password: "",
         password_confirmation: "",
@@ -24,14 +24,22 @@ export default function Register() {
         };
     }, []);
 
+    const handleInputChange = (e: any) => {
+        const target = e.target;
+        const value =
+            target.type === "checkbox" ? target.checked : target.value;
+        const name = target.name;
+
+        setData(name, value);
+    };
+
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-
         post(route("register"));
     };
 
     return (
-        <div className="bg-[#ff8400] min-h-screen flex flex-col justify-center items-center text-white">
+        <div className="bg-[#ff8400] min-h-screen flex flex-col justify-center items-center text-white py-8">
             <Head title="Register" />
 
             <div className="text-white">
@@ -42,22 +50,22 @@ export default function Register() {
                 <div className="mt-4">
                     <InputLabel
                         className="text-white"
-                        htmlFor="ktpId"
-                        value="KTP ID"
+                        htmlFor="ktp_id"
+                        value="NIK"
                     />
 
                     <TextInput
-                        id="ktpId"
-                        type="text"
-                        name="ktpId"
-                        value={data.ktpId}
-                        className="mt-1 block w-full"
+                        id="ktp_id"
+                        type="number"
+                        name="ktp_id"
+                        value={data.ktp_id}
+                        className="mt-1 block w-full text-black"
                         autoComplete="ktpId"
-                        onChange={(e) => setData("ktpId", e.target.value)}
+                        onChange={handleInputChange}
                         required
                     />
 
-                    <InputError message={errors.ktpId} className="mt-2" />
+                    <InputError message={errors.ktp_id} className="mt-2" />
                 </div>
 
                 <div>
@@ -68,91 +76,113 @@ export default function Register() {
                     />
 
                     <TextInput
-                        id="name"
+                        id="username"
                         name="username"
                         value={data.username}
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full text-black"
                         autoComplete="name"
                         isFocused={true}
-                        onChange={(e) => setData("username", e.target.value)}
+                        onChange={handleInputChange}
                         required
                     />
 
                     <InputError message={errors.username} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
+                <div>
                     <InputLabel
                         className="mt-2 text-white"
-                        htmlFor="phoneNumber"
-                        value="Phone Number"
+                        htmlFor="email"
+                        value="email"
                     />
 
                     <TextInput
-                        id="phoneNumber"
-                        type="text"
-                        name="phoneNumber"
+                        id="email"
+                        name="email"
                         value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="phoneNumber"
-                        onChange={(e) => setData("phoneNumber", e.target.value)}
+                        className="mt-1 block w-full text-black"
+                        autoComplete="name"
+                        isFocused={true}
+                        onChange={handleInputChange}
                         required
                     />
 
-                    <InputError message={errors.phoneNumber} className="mt-2" />
+                    <InputError message={errors.email} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
                     <InputLabel
                         className="mt-2 text-white"
-                        htmlFor="birthDate"
-                        value="Birth Date"
+                        htmlFor="phone_number"
+                        value="No. Handphone"
                     />
 
                     <TextInput
-                        id="birthDate"
+                        id="phone_number"
+                        type="number"
+                        name="phone_number"
+                        value={data.phone_number}
+                        className="mt-1 block w-full text-black"
+                        autoComplete="phone_number"
+                        onChange={handleInputChange}
+                        required
+                    />
+
+                    <InputError
+                        message={errors.phone_number}
+                        className="mt-2"
+                    />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel
+                        className="mt-2 text-white"
+                        htmlFor="birthdate"
+                        value="Tanggal Lahir"
+                    />
+
+                    <TextInput
+                        id="birthdate"
                         type="date"
-                        name="birthDate"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="birthDate"
-                        onChange={(e) => setData("birthDate", e.target.value)}
+                        name="birthdate"
+                        value={data.birthdate}
+                        className="mt-1 block w-full text-black"
+                        autoComplete="birthdate"
+                        onChange={handleInputChange}
                         required
                     />
 
-                    <InputError message={errors.birthDate} className="mt-2" />
+                    <InputError message={errors.birthdate} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel
-                        className="mt-2 text-white"
-                        htmlFor="gender"
-                        value="Gender"
-                    />
+                    <InputLabel className="mt-2 text-white" value="Gender" />
                     <div className="flex gap-1">
                         <TextInput
-                            id="gender"
+                            id="genderP"
                             type="radio"
                             name="gender"
+                            value="1"
                             className="mt-1 block "
                             autoComplete="gender"
-                            onClick={() => setData("gender", 1)}
+                            onClick={handleInputChange}
                         />
-                        <span>Perempuan</span>
+                        <label htmlFor="genderP">Perempuan</label>
                     </div>
                     <div className="flex gap-1">
                         <TextInput
-                            id="gender"
+                            id="genderL"
                             type="radio"
                             name="gender"
+                            value="0"
                             className="mt-1 block "
                             autoComplete="gender"
-                            onClick={() => setData("gender", 0)}
+                            onClick={handleInputChange}
                         />
-                        <span>Laki - Laki</span>
+                        <label htmlFor="genderL">Laki-laki</label>
                     </div>
 
-                    <InputError message={errors.birthDate} className="mt-2" />
+                    <InputError message={errors.gender} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
@@ -167,9 +197,9 @@ export default function Register() {
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full text-black"
                         autoComplete="new-password"
-                        onChange={(e) => setData("password", e.target.value)}
+                        onChange={handleInputChange}
                         required
                     />
 
@@ -188,11 +218,9 @@ export default function Register() {
                         type="password"
                         name="password_confirmation"
                         value={data.password_confirmation}
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full text-black"
                         autoComplete="new-password"
-                        onChange={(e) =>
-                            setData("password_confirmation", e.target.value)
-                        }
+                        onChange={handleInputChange}
                         required
                     />
 
