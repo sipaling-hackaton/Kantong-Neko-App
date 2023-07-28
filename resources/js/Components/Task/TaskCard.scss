@@ -1,0 +1,34 @@
+#TaskCard {
+    max-width: 90vw;
+    background: linear-gradient(180deg, #FF6D6D 0%, #FF6D6D 100%);
+    // box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+    isolation: isolate;
+    border-radius: 20px;
+    padding: 20px;
+
+    #title {
+        font-size: 30px;
+        color: white;
+    }
+
+    #point {
+        font-size: 30px;
+        color: white;
+    }
+
+    #btn {
+        background: linear-gradient(180deg, #FF6D6D 0%, #FF6D6D 100%);
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+        isolation: isolate;
+        border-radius: 20px;
+        padding: 10px;
+        font-size: 30px;
+        color: white;
+        margin-top: 20px;
+
+        &:hover {
+            filter: brightness(0.8);
+            cursor: pointer;
+        }
+    }
+}

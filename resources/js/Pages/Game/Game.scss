@@ -1,0 +1,81 @@
+#Game_page {
+
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 76vh;
+    padding: 0;
+    margin: 0;
+    margin: auto;
+
+    #bg {
+        isolation: isolate;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+        scale: 1;
+
+    }
+
+    #Navigate {
+
+        position: fixed;
+        right: 10px;
+        bottom: 100px;
+        display: flex;
+        flex-direction: column;
+
+        .ButtonNav {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+            min-width: max-content;
+            height: max-content;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: aliceblue;
+            // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+            // box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+            // box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+            isolation: isolate;
+            margin-top: 20px;
+            animation: infinite pulse 1s ease-in-out;
+
+            @keyframes pulse {
+                0% {
+                    scale: 1;
+                    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+
+                }
+
+                50% {
+                    scale: 1.1;
+                    box-shadow: rgba(240, 46, 170, 0.05) 10px 10px, rgba(240, 46, 170, 0.1) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.3) 20px 20px, rgba(240, 46, 170, 0.4) 25px 25px;
+
+                }
+
+                100% {
+                    scale: 1;
+                    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+
+                }
+            }
+
+            img {
+                width: 50px;
+                height: 50px;
+                object-fit: contain;
+            }
+        }
+    }
+}

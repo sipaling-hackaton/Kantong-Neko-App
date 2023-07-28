@@ -1,0 +1,18 @@
+#EatPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    #Table {
+        box-shadow: inset 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+        isolation: isolate;
+        background-color: #ff6d6d;
+        height: fit-content;
+        min-height: 300px;
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+}
