@@ -36,7 +36,6 @@ export default function Login({
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-        console.log(data);
 
         post(route("login"));
     };
