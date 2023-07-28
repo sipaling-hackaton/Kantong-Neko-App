@@ -10,6 +10,10 @@ class TermsSavings extends Model
 {
     use HasFactory;
 
+    protected $cast = [
+        "target_amount" => "float",
+    ];
+
     public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class, "account_id");

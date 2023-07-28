@@ -13,8 +13,8 @@ return new class extends Migration {
         Schema::create("merchant_partners", function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("description");
-            $table->string("image");
+            $table->text("description");
+            $table->string("logo");
             $table->timestamps();
         });
     }

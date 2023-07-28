@@ -11,8 +11,11 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create("terms_savings", function (Blueprint $table) {
-            $table->uuid("id")->primary();
-            $table->float("target_amount")->comment("in IDR");
+            $table
+                ->uuid("id")
+                ->primary()
+                ->default(DB::raw("uuid()"));
+            $table->decimal("target_amount", 12, 2)->comment("in IDR");
             $table->integer("time_period")->comment("in months");
             $table->date("start_date")->default(now());
             $table

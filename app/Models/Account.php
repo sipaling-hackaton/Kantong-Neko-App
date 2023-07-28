@@ -16,8 +16,11 @@ class Account extends Model
         return $this->hasMany(TermSaving::class);
     }
 
-    public function merchantProducts(): BelongsToMany
+    public function claimedRewards(): BelongsToMany
     {
-        return $this->belongsToMany(MerchantProduct::class);
+        return $this->belongsToMany(
+            MerchantProduct::class,
+            "account_product"
+        )->withTimestamps();
     }
 }

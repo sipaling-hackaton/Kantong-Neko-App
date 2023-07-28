@@ -11,10 +11,16 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create("merchant_products", function (Blueprint $table) {
-            $table->uuid("id")->primary();
+            $table
+                ->uuid("id")
+                ->primary()
+                ->default(DB::raw("uuid()"));
             $table->string("name");
-            $table->string("description");
+            $table->text("description");
             $table->string("image");
+            $table->integer("stock");
+            $table->date("start_date");
+            $table->date("end_date");
             $table
                 ->foreignId("merchant_partner_id")
                 ->constrained("merchant_partners");
