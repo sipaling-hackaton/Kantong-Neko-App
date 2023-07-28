@@ -3,7 +3,6 @@ import Checkbox from "@/Components/Checkbox";
 import GuestLayout from "@/Layouts/GuestLayout";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 
@@ -108,9 +107,11 @@ export default function Login({
                 >
                     Masuk
                 </button>
-                <button className="mt-4 p-2 w-full bg-[#58cc02] text-white rounded-[2rem]">
-                    Sudah Punya Akun
-                </button>
+                <Link href="/register">
+                    <button className="mt-4 p-2 w-full bg-[#58cc02] text-white rounded-[2rem]">
+                        Sudah Punya Akun
+                    </button>
+                </Link>
             </form>
         </div>
     );
