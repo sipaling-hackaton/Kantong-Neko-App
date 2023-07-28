@@ -2,8 +2,10 @@ import AppLayout from "@/Layouts/AppLayout";
 import Lottie from "lottie-react";
 import animationData from "./Assets/animation_lkmhtcno.json";
 import bg from "./Assets/bg.png";
+import { useState } from "react";
 
 export default function Home() {
+    const [blur, setBlur] = useState(true);
     return (
         <div className="relative bg-[#f5f0e8] min-h-screen">
             <div>
@@ -25,7 +27,13 @@ export default function Home() {
                     <div>Saldo kamu saat ini sebesar</div>
                     <div className="flex flex-start">
                         <span>Rp.</span>
-                        <span className="text-[3rem]">1.250.000</span>
+                        <span
+                            style={{ filter: blur ? "blur(8px)" : "" }}
+                            onClick={() => setBlur(!blur)}
+                            className="text-[3rem]"
+                        >
+                            1.250.000
+                        </span>
                     </div>
                 </div>
                 <div className="relative z-20 bg-[#871fb8] p-4 flex justify-between items-center mx-4 mt-4 text-white rounded-lg">
