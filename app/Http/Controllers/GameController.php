@@ -22,4 +22,11 @@ class GameController extends Controller
     {
         return Inertia::render('Game/Minigame/Eat/Eat');
     }
+
+
+    // wardrobe
+    public function Wardrobe()
+    {
+        return Inertia::render('Game/Wardrobe/Wardrobe');
+    }
 }

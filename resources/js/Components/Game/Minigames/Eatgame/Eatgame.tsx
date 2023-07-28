@@ -8,6 +8,8 @@ import { Object } from './Object'
 import BG from "@/Pages/Game/Minigame/Assets/Images/background.svg"
 import FoodData from "./Food.json"
 import { Button } from 'antd'
+import Guest from '@/Layouts/GuestLayout'
+import AppLayout from '@/Layouts/AppLayout'
 
 export default function Eatgame() {
     const food: React.RefObject<HTMLDivElement> = useRef(null);
@@ -82,3 +84,6 @@ export default function Eatgame() {
         </div>
     )
 }
+
+
+Eatgame.layout = (page: any, logo: any) => <AppLayout>{page}</AppLayout>

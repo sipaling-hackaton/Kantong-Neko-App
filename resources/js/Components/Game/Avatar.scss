@@ -1,5 +1,5 @@
 #Avatar {
-    $size : 1px;
+    $size : 0.9px;
     position: relative;
     $secondary : #faea12;
     $border : calc($size * 4) solid rgb(77, 60, 60);
@@ -9,7 +9,7 @@
     width: calc($size * 400);
     isolation: isolate;
     scale: 1;
-    box-shadow: calc($size * 10) calc($size * 10) calc($size * 10) calc($size * 10) rgba(0, 0, 0, 0.2);
+    // box-shadow: calc($size * 10) calc($size * 10) calc($size * 10) calc($size * 10) rgba(0, 0, 0, 0.2);
 
     // img {
     //     position: absolute;
@@ -34,6 +34,25 @@
         width: calc($size * 210);
         border-radius: 60% 60% 50% 50%;
         transform: translate(-50%, -50%);
+        animation: headMove 5s alternate infinite;
+
+        @keyframes headMove {
+            0% {
+                transform: translate(-50%, -45%);
+            }
+
+            100% {
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+
+
+    .hat {
+        z-index: 100;
+        position: absolute;
+        top: calc($size * -120);
+        object-fit: contain;
     }
 
     .ears {
@@ -297,7 +316,45 @@
             transform: scale(1.1);
             border-radius: calc($size * 7);
         }
+
+        #ribbon {
+            position: absolute;
+            // top: calc($size * 5);
+            top: 0;
+            left: 0;
+            height: calc($size * 80);
+            width: 100%;
+            z-index: 10;
+            // transform: scale(1.1);
+            border-radius: calc($size * 7);
+
+            animation: ribbon 3s infinite alternate;
+
+            @keyframes ribbon {
+                0% {
+                    transform: skew(0);
+                }
+
+                7% {
+                    transform: skew(15deg);
+                }
+
+                14% {
+                    transform: skew(-15deg);
+                }
+
+
+                20% {
+                    transform: skew(0);
+                }
+
+                100% {
+                    // transform: translate(-50%, -50%) rotate(360deg);
+                }
+            }
+        }
     }
+
 
     .body::before {
         content: "";

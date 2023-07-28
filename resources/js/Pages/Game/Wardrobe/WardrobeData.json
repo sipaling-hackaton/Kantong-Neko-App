@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "name": "hat",
+        "image": "https://www.svgrepo.com/show/530597/hat.svg",
+        "type": "hat"
+    },
+    {
+        "id": "2",
+        "name": "hat",
+        "image": "https://www.svgrepo.com/show/426957/hat.svg",
+        "type": "hat"
+    },
+    {
+        "id": "3",
+        "name": "hat",
+        "image": "https://www.svgrepo.com/show/426954/pumpkin.svg",
+        "type": "hat"
+    },
+    {
+        "id": "4",
+        "name": "hat",
+        "image": "https://www.svgrepo.com/show/410455/hat-iv.svg",
+        "type": "hat"
+    }
+]

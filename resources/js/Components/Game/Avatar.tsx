@@ -4,7 +4,12 @@ import { motion } from "framer-motion";
 import AvatarImg from "./Assets/Avatar.svg";
 import Sparkles from "../General/Sparkle/Sparkle";
 
-export class Avatar extends React.Component<{ Characterref?: any, jump?: string, AnimationEnd?: any, happy?: boolean, size?: string, feeling?: string, open?: boolean }, {}>{
+interface outfit {
+    type: string,
+    image: string
+}
+
+export class Avatar extends React.Component<{ Characterref?: any, jump?: string, AnimationEnd?: any, happy?: boolean, size?: string, feeling?: string, open?: boolean, outfit?: outfit }, {}>{
     intervalId: NodeJS.Timeout | null = null;
     constructor(props: any) {
         super(props);
@@ -21,16 +26,31 @@ export class Avatar extends React.Component<{ Characterref?: any, jump?: string,
     }
 
     render() {
-        const { Characterref, jump, happy, feeling, open } = this.props;
+        const { Characterref, jump, happy, feeling, open, outfit } = this.props;
+        console.log("outfit");
+        console.log(outfit);
+        var hat;
+        var mask;
+        var shirt;
+        if (outfit !== null && outfit !== undefined) {
+            if (outfit.type === "hat") {
+                hat = outfit.image;
+            } else if (outfit.type === "mask") {
+                mask = outfit.image;
+            } else if (outfit.type === "shirt") {
+                shirt = outfit.image;
+            }
+        }
         return (<>
             <div id="Avatar">
-                {/* <img src="https://freesvg.org/img/1634560776baseball-cap-hat.png" alt="" /> */}
                 <motion.div
                     id="character"
                 >
                     <div className="">
                         <div className=" ears"></div>
                         <div className=" head">
+                            <img className="hat" src={hat} alt="" />
+
                             <div className=" face"
                                 ref={Characterref}
                             >
@@ -70,6 +90,7 @@ export class Avatar extends React.Component<{ Characterref?: any, jump?: string,
                         </div>
                         <div className=" body">
                             <div id="collar"></div>
+                            <img id="ribbon" src="https://www.svgrepo.com/show/423813/ribbon-origami-paper.svg" alt="" />
                         </div>
                         <div className="frontleg"></div>
                         <div className="backleg"></div>
