@@ -10,12 +10,14 @@ export default function Guest({ children }: PropsWithChildren) {
             style={{
                 height: "100vh",
                 width: "100%",
-                paddingBottom: "calc(10vh + 1rem)",
             }}
         >
             <TopNav />
             <div className="    ">{children}</div>
-
+            <div
+                className="bg-[#f5f0e8]"
+                style={{ height: "calc(10vh + 1rem)", width: "100vw" }}
+            ></div>
             <BottomNav />
         </div>
     );

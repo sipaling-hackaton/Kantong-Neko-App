@@ -8,7 +8,7 @@ export default function Home() {
         <div className="relative bg-[#f5f0e8] min-h-screen">
             <div>
                 <img className="absolute z-10" src={bg} />
-                <div className="relative z-20 text-white mx-4 min-h-[10rem]">
+                <div className="relative flex flex-col justify-center font-memo z-20 text-white mx-4 min-h-[10rem]">
                     <span>Halo,</span>
                     <h1>NINOK!</h1>
                 </div>

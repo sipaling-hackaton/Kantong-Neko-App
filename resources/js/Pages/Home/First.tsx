@@ -1,6 +1,7 @@
-import bg from "./Assets/bg.png";
+import bg from "./Assets/bgflat.png";
 import Lottie from "lottie-react";
-import animationData from "./Assets/animation_lkmhtcno.json";
+import animationData from "./Assets/animation_lkmklneq.json";
+import { Link } from "@inertiajs/react";
 
 export default function Home() {
     return (
@@ -19,12 +20,28 @@ export default function Home() {
                     animationData={animationData}
                 />
                 <div>
-                    <div className="p-4 text-white text-center rounded-[2rem] bg-[#58cc02]">
-                        Mulai
-                    </div>
-                    <div className="mt-4 p-4 text-white text-center rounded-[2rem] bg-[#58cc02]">
-                        Sudah Punya Akun
-                    </div>
+                    <Link
+                        href="/login"
+                        style={{
+                            height: "100%",
+                            color: "black",
+                        }}
+                    >
+                        <div className="p-4 text-white text-center rounded-[2rem] bg-[#58cc02]">
+                            Mulai
+                        </div>
+                    </Link>
+                    <Link
+                        href="/register"
+                        style={{
+                            height: "100%",
+                            color: "black",
+                        }}
+                    >
+                        <div className="mt-4 p-4 text-white text-center rounded-[2rem] bg-[#58cc02]">
+                            Sudah Punya Akun
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>
