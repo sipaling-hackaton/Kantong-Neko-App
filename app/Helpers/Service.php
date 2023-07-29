@@ -254,13 +254,16 @@ class Service
             $res = Http::withToken($accessToken)->post(
                 env("HACKATHON_API_URL") . "/bankAccount/addBalance",
                 [
-                    "receiverAccountNo" => $request->activeAccount,
-                    "amount" => $request->balance,
+                    "receiverAccountNo" => $activeAccount,
+                    "amount" => $balance,
                 ]
             );
 
+            return $res;
+
             throw new Exception("Gagal menambahkan balance");
         } catch (Exception $err) {
+            throw new Exception($e->getMessage());
         }
     }
 }

@@ -34,9 +34,6 @@ Route::get("/quest/detail/{id}", [TaskController::class, "QuestDetail"])->name(
     "quest.detail"
 );
 
-Route::get("/top-up", [TaskController::class, "TopUp"])->name("topUP");
-Route::post("/top-up", [TaskController::class, "PostTopUp"])->name("topUP");
-
 Route::get("quest", [TaskController::class, "QuestRewards"])->name("quest");
 
 Route::get("task", TaskController::class)->name("task"); //page task
@@ -47,6 +44,11 @@ Route::middleware(["auth"])->group(function () {
         Route::get("task", TaskController::class)->name("task"); //page task
         Route::get("quest", [TaskController::class, "QuestRewards"])->name(
             "quest"
+        );
+
+        Route::get("/top-up", [TaskController::class, "TopUp"])->name("topUP");
+        Route::post("/top-up", [TaskController::class, "PostTopUp"])->name(
+            "topUP"
         );
     });
 

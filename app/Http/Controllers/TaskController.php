@@ -70,7 +70,15 @@ class TaskController extends Controller
         return Inertia::render("TopUp/TopUp");
     }
 
-    public function PostTopUp()
+    public function PostTopUp(Request $request)
     {
+        dd($request);
+        $topUp = Service::AddBalance(
+            $request->session()->get("token"),
+            $request->activeAccount,
+            $request->balance
+        );
+
+        return Inertia::render("Home/Home");
     }
 }
