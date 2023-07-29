@@ -6,7 +6,7 @@ import bg from "./Assets/bg2.png";
 import { useState } from "react";
 import moment from "moment";
 import "moment/dist/locale/id";
-import Link from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 moment.locale("id");
 
 export default function Home(props: any) {
@@ -157,7 +157,7 @@ export default function Home(props: any) {
                     </span>
                 </div>
             </div>
-            <Link>
+            <Link href="/top-up">
                 <div className="relative z-20 bg-[#48b007] mx-4 mt-4 flex justify-center items-center text-white rounded-[2rem] p-4">
                     <img />
                     <span>AYO NABUNG LAGI!</span>

@@ -10,6 +10,7 @@ use App\Models\Account;
 use App\Models\MerchantPartner;
 use App\Models\MerchantProduct;
 use App\Models\Avatar;
+use App\Models\User;
 
 class Service
 {
@@ -27,7 +28,12 @@ class Service
                 $res->successful() &&
                 $res->json()["success"] == Constant::STATUS_SUCCESS
             ) {
-                return $res->json()["data"];
+                $user = $res->json()["data"];
+                $user["serverUserId"] = User::where(
+                    "username",
+                    $user["username"]
+                )->first()->id;
+                return $user;
             }
             throw new Exception("Gagal mengambil data user");
         } catch (Exception $e) {
@@ -52,7 +58,9 @@ class Service
                 $arrAccount = [];
                 foreach ($res->json()["data"]["accounts"] as $account) {
                     $account = Account::find($account["accountNo"]);
-                    array_push($arrAccount, $account);
+                    if ($account) {
+                        array_push($arrAccount, $account);
+                    }
                 }
                 return $arrAccount;
             }
@@ -106,7 +114,7 @@ class Service
             }
             throw new Exception("Gagal mengambil data rekening");
         } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            throw Exception($e->getMessage());
         }
     }
 
@@ -131,6 +139,7 @@ class Service
                 $res->successful() &&
                 $res->json()["success"] == Constant::STATUS_SUCCESS
             ) {
+                $account->id = $res->json()["data"]["accountNo"];
                 $user = User::find($userId);
                 $user->accounts()->save($account);
                 return $user;
@@ -248,22 +257,21 @@ class Service
     /**
      * Add balance to the account
      */
-    public static function AddBalance(Request $request)
+    public static function AddBalance($accessToken, $activeAccountId, $balance)
     {
         try {
             $res = Http::withToken($accessToken)->post(
                 env("HACKATHON_API_URL") . "/bankAccount/addBalance",
                 [
-                    "receiverAccountNo" => $activeAccount,
+                    "receiverAccountNo" => $activeAccountId,
                     "amount" => $balance,
                 ]
             );
-
-            return $res;
+            return $res->json();
 
             throw new Exception("Gagal menambahkan balance");
         } catch (Exception $err) {
-            throw new Exception($e->getMessage());
+            throw new Exception($err->getMessage());
         }
     }
 }

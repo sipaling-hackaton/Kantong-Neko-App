@@ -5,11 +5,9 @@ import TextInput from "@/Components/TextInput";
 
 const DaftarRekening = (props: any) => {
     const { data, setData, post, processing, errors, reset } = useForm({
-        id: "",
         name: "",
-        gender: 0,
+        gender: null,
         birthdate: "",
-        exp: 50,
     });
 
     const postBankAccount = (e: any) => {
@@ -35,16 +33,16 @@ const DaftarRekening = (props: any) => {
                 <div>
                     <InputLabel
                         className="text-white"
-                        htmlFor="username"
-                        value="Username"
+                        htmlFor="name"
+                        value="Nama Lengkap"
                     />
                     <TextInput
-                        id="username"
+                        id="name"
                         type="text"
                         name="name"
                         value={data.name}
                         className="mt-1 block w-full"
-                        autoComplete="username"
+                        autoComplete="name"
                         isFocused={true}
                         onChange={handleInputChange}
                     />

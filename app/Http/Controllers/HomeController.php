@@ -55,33 +55,27 @@ class HomeController extends Model
 
     public function CreateRekening(Request $request)
     {
-        $user = Service::getUserData($request->session()->get("token"));
-        $user["bankAccounts"] = Service::getListBankAccount(
-            $request->session()->get("token")
-        );
+        $accessToken = $request->session()->get("token");
+        $user = Service::getUserData($accessToken);
 
-        $request->session()->put("accessToken", $request);
-
-        $id = Http::withToken($accessToken)->pos(
-            env("HACKATHON_API_URL") . "/bankAccount/create",
-            [
-                "balance" => 0,
-            ]
-        );
-
-        $request->validate([
-            "id" => $id,
-            "name" => "required|string",
-            "gender" => "required|in:0,1",
-            "birthdate" => "required|date",
-            "exp" => 50,
+        $newAcc = new Account([
+            "name" => $request->name,
+            "gender" => $request->gender,
+            "birthdate" => $request->birthdate,
+            "exp" => 0,
         ]);
 
-        return Inertia::render("DaftarRekening/SelectAccount", [
-            "token" => $request->session()->get("token"),
-            "user" => $user,
-            "errors" => session("errors"),
-            "auth" => $request->user(),
-        ]);
+        try {
+            $parentAcc = Service::createBankAccount(
+                $accessToken,
+                $user["serverUserId"],
+                $newAcc
+            );
+            return redirect()->intended("/daftar-rekening/select-account");
+        } catch (Exception $e) {
+            return redirect()
+                ->back()
+                ->with("error", $e->getMessage());
+        }
     }
 }

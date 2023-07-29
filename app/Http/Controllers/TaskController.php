@@ -72,13 +72,12 @@ class TaskController extends Controller
 
     public function PostTopUp(Request $request)
     {
-        dd($request);
         $topUp = Service::AddBalance(
             $request->session()->get("token"),
-            $request->activeAccount,
+            $request->activeAccount["accountNo"],
             $request->balance
         );
 
-        return Inertia::render("Home/Home");
+        return redirect()->intended("/");
     }
 }

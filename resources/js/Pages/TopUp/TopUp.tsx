@@ -2,13 +2,16 @@ import { useForm } from "@inertiajs/react";
 import Layout from "@/Layouts/AppLayout";
 import bg from "./Assets/Vector 1.svg";
 import coins from "./Assets/coin.png";
+import { useEffect } from "react";
 
 const TopUp = () => {
     const { data, setData, post } = useForm({
         balance: 0,
     });
 
-    const handleChange = (value: number) => {
+    const handleChange = (e: any) => {
+        const value = parseInt(e.target.value);
+
         setData("balance", value);
     };
 
@@ -31,40 +34,41 @@ const TopUp = () => {
                 Tabung
             </h1>
             <div className="relative  z-20 flex flex-wrap gap-[1rem] justify-center items-center">
-                <div
-                    onClick={() => setData("balance", 10000)}
+                <button
+                    onClick={() => setData("balance", 5000)}
                     className="flex justify-center items-center rounded-[2rem] bg-white p-8 flex-col  w-1/3"
                 >
                     <span className="whitespace-nowrap">Rp. 5.000</span>
                     <img src={coins} />
-                </div>
-                <div
+                </button>
+                <button
                     onClick={() => setData("balance", 10000)}
                     className="flex justify-center items-center rounded-[2rem] bg-white flex-col p-8  w-1/3"
                 >
                     <span className="whitespace-nowrap">Rp. 10.000</span>
                     <img src={coins} />
-                </div>
-                <div
-                    onClick={() => setData("balance", 10000)}
+                </button>
+                <button
+                    onClick={() => setData("balance", 15000)}
                     className="flex flex-col justify-center items-center rounded-[2rem] bg-white p-8  w-1/3"
                 >
                     <span className="whitespace-nowrap">Rp. 15.000</span>
                     <img src={coins} />
-                </div>
-                <div
-                    onClick={() => setData("balance", 10000)}
+                </button>
+                <button
+                    onClick={() => setData("balance", 20000)}
                     className="flex flex-col justify-center items-center rounded-[2rem] bg-white p-8  w-1/3"
                 >
                     <span className="whitespace-nowrap">Rp. 20.000</span>
                     <img src={coins} />
-                </div>
+                </button>
             </div>
             <div className="flex flex-col items-center jsutify-center">
                 <input
                     className="w-2/3 rounded-[2rem] text-[#613625] font-poppins"
                     type="number"
-                    onChange={() => handleChange}
+                    onChange={handleChange}
+                    value={data.balance}
                     placeholder="Atau, ketik sendiri nominalnya"
                 />
 
