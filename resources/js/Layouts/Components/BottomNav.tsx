@@ -51,7 +51,7 @@ export default function BottomNav() {
                     />
                 </Link>
                 <Link
-                    href="/task"
+                    href="/quest"
                     style={{
                         height: "100%",
                         color: "black",
@@ -60,7 +60,7 @@ export default function BottomNav() {
                     <img
                         className="w-1/2"
                         src={
-                            window.location.pathname == "/list"
+                            window.location.pathname == "/quest"
                                 ? lsitIconActive
                                 : listIcon
                         }
@@ -83,7 +83,7 @@ export default function BottomNav() {
                     />
                 </Link>
                 <Link
-                    href="/game"
+                    href="/profile"
                     style={{
                         height: "100%",
                         color: "black",

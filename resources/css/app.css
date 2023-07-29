@@ -11,3 +11,12 @@
 .font-mouse {
     font-family: Mouse Memoirs;
 }
+:root {
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    max-width: 750px;
+    width: 750px;
+}

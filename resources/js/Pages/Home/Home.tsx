@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import AppLayout from "@/Layouts/AppLayout";
 import Lottie from "lottie-react";
 import animationData from "./Assets/animation_lkmhtcno.json";
-import bg from "./Assets/bg2.png";
+import bg from "./Assets/bg3.png";
 import { useState } from "react";
 import moment from "moment";
 import "moment/dist/locale/id";
@@ -59,13 +59,13 @@ export default function Home(props: any) {
                     <div className="font-poppins font-bold text-[#fdb712]">
                         SALDO KAMU SAAT INI SEBESAR
                     </div>
-                    <div className="flex justify-center items-center text-mouse ">
-                        <span className="text-[#fdb712] font-mouse font-bold text-[1.5rem]">
+                    <div className="flex justify-center items-center text-mouse gap-4">
+                        <span className="text-[#fdb712] font-mouse font-medium text-[2rem]">
                             Rp.
                         </span>
                         <span
                             onClick={() => setBlur(!blur)}
-                            className="text-[3rem] text-[#fdb712] text-[2rem] font-mouse font-bold"
+                            className="text-[3rem] text-[#fdb712] text-[5rem] font-mouse font-medium"
                         >
                             {blur ? "*******" : props.activeAccount.balance}
                         </span>
@@ -73,13 +73,15 @@ export default function Home(props: any) {
                 </div>
                 <div className="relative z-20 bg-white p-4 flex justify-between items-center mx-4 mt-4 text-white rounded-lg">
                     <span className="text-[#871fb8] font-poppins font-bold">
-                        Poin Kamu
+                        POINT KAMU
                     </span>
                     <div className="text-[#871fb8] text-mouse">
-                        <span className="text-[3rem] font-mouse font-bold">
+                        <span className="text-[4rem] font-mouse font-medium">
                             {props.activeAccount.exp}
                         </span>
-                        <span className="font-mouse font-bold">xp</span>
+                        <span className="font-mouse font-bold text-[1.5rem]">
+                            xp
+                        </span>
                     </div>
                 </div>
             </div>
