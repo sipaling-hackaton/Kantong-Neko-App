@@ -90,7 +90,7 @@ export default function Task(props: any) {
                 </div>
             </div>
             <div>
-                <div className="relative flex z-20 text-[#7e29cd] border-[#7e29cd] bg-white border-4 rounded-[2rem] p-1">
+                <div className="relative flex z-20 text-[#7e29cd] border-[#7e29cd] bg-white border-4 rounded-[2rem] p-1 mx-4">
                     <div
                         style={{
                             left: active == 0 ? "4px" : "calc(50% - 4px)",
