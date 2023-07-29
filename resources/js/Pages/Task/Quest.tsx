@@ -11,7 +11,6 @@ import { useForm } from "@inertiajs/react";
 import { Modal } from "antd";
 
 export default function Task(props: any) {
-    console.log(props.activeAccount);
     const [active, setActive] = useState(0);
     const questsArr = [
         { id: 1, title: "MENCARI SI NEKO", status: true },

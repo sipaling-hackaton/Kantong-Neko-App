@@ -14,8 +14,6 @@ export default function Wardrobe({ ItemData, activeAccount, avatar }: any) {
         ribbon_id: activeAccount.avatar.ribbon.id,
     });
 
-    console.log(data);
-
     const handleWardrobeChange = (
         hat_id: any = null,
         ribbon_id: any = null
