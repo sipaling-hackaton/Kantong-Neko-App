@@ -25,7 +25,7 @@ Route::get("first", function () {
 })->name("first");
 
 
-Route::get('game', GameController::class)->name('game'); //page game
+Route::get('game', GameController::class)->name('game'); //pasge game
 Route::get('game/minigames', [GameController::class, 'Minigames']); //page minigames
 Route::get('game/minigames/eat', [GameController::class, 'EatMiniGame']); //page minigames
 Route::get('game/wardrobe', [GameController::class, 'Wardrobe']); //page minigames

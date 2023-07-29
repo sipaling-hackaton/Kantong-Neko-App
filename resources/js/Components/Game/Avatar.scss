@@ -1,502 +1,536 @@
-#Avatar {
-    $size : 0.9px;
-    position: relative;
-    $secondary : #faea12;
-    $border : calc($size * 4) solid rgb(77, 60, 60);
-    // hei  ght: max-content;
-    // width: max-content;
-    height: calc($size * 400);
-    width: calc($size * 400);
+#character {
+
+    // border: $border;
+    // height: calc($size * 400);
+    // width: calc($size * 400);
+    // scale: 1.9;
+    // overflow: hidden;
     isolation: isolate;
-    scale: 1;
-    // box-shadow: calc($size * 10) calc($size * 10) calc($size * 10) calc($size * 10) rgba(0, 0, 0, 0.2);
-
-    // img {
-    //     position: absolute;
-    //     top: 0%;
-    //     left: 0;
-    //     width: inherit;
-    //     // min-width: 100px;
-    //     height: 100%;
-    //     // min-height: 100px;
-    //     object-fit: cover;
-    //     z-index: 1;
-    //     transform: translate(-50%, -120%);
-    // }
-
-    .head {
-        position: absolute;
-        background-color: #f3f3f3;
-        top: 50%;
-        left: 50%;
-        border: $border;
-        height: calc($size * 180);
-        width: calc($size * 210);
-        border-radius: 60% 60% 50% 50%;
-        transform: translate(-50%, -50%);
-        animation: headMove 5s alternate infinite;
-
-        @keyframes headMove {
-            0% {
-                transform: translate(-50%, -45%);
-            }
-
-            100% {
-                transform: translate(-50%, -50%);
-            }
-        }
-    }
+    #Avatar {
+        $size : 1px;
+        position: relative;
+        $secondary : #faea12;
+        $border : calc($size * 4) solid rgb(77, 60, 60);
+        // hei  ght: max-content;
+        // width: max-content;
+        height: calc($size * 400);
+        // min-height: max-content;
+        // max-height: 100vh;
+        width: 100%;
+        // min-width: max-content;
+        max-width: 100%;
+        isolation: isolate;
+        scale: inherit;
+        overflow: visible;
+        // box-shadow: calc($size * 10) calc($size * 10) calc($size * 10) calc($size * 10) rgba(0, 0, 0, 0.2);
+        // img {
+        //     position: absolute;
+        //     top: 0%;
+        //     left: 0;
+        //     width: inherit;
+        //     // min-width: 100px;
+        //     height: 100%;
+        //     // min-height: 100px;
+        //     object-fit: cover;
+        //     z-index: 1;
+        //     transform: translate(-50%, -120%);
+        // }
 
 
-    .hat {
-        z-index: 100;
-        position: absolute;
-        top: calc($size * -120);
-        object-fit: contain;
-    }
 
-    .ears {
-        position: absolute;
-        background-color: $secondary;
-        top: 50%;
-        left: 50%;
-        /*   margin-top:-25px; */
-    }
-
-    .ears::before {
-        content: "";
-        position: absolute;
-        background-color: $secondary;
-        margin-left: calc($size * -35);
-        border: $border;
-        height: calc($size * 150);
-        width: calc($size * 150);
-        background-clip: content-box;
-        box-shadow: inset 0 0 0 calc($size * 15) #f3f3f3;
-        border-radius: calc($size * 5) 90% 0 90%;
-        // transform: skewX(10deg);
-        // transform: skewY(10deg);
-        transform: translate(-50%, -65%);
-        animation: earleft 1s alternate infinite;
-
-        @keyframes earleft {
-            0% {
-                transform: translate(-50%, -65%);
-            }
-
-            100% {
-                transform: translate(-50%, -65%) rotate(10deg);
-            }
-        }
-
-    }
-
-    .ears::after {
-        content: "";
-        position: absolute;
-        background-color: $secondary;
-        /*   margin: 50px 0 0 50px; */
-        margin-left: calc($size * 35);
-        border: $border;
-        height: calc($size * 150);
-        width: calc($size * 150);
-        background-clip: content-box;
-        box-shadow: inset 0 0 0 calc($size * 15) #f3f3f3;
-        border-radius: 90% calc($size * 5) 90% 0;
-        transform: skewX(-10deg);
-        transform: skewY(-10deg);
-        transform: translate(-50%, -65%);
-
-        animation: earright 1.4s alternate infinite;
-        animation-delay: 0.5s;
-
-        @keyframes earright {
-            0% {
-                transform: translate(-50%, -65%);
-            }
-
-            100% {
-                transform: translate(-50%, -65%) rotate(10deg);
-            }
-        }
-    }
-
-    .face {
-        position: absolute;
-        background-color: #fff;
-        top: 60%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        /*   border: 1px solid black; */
-        height: calc($size * 90);
-        width: calc($size * 100);
-        border-radius: 50%;
-
-        .stripes {
-            // border: 1px solid black;
+        .head {
             position: absolute;
-
-            .left {
-                .stripe {
-                    top: 50%;
-                    left: calc($size * -10);
-                    height: calc($size * 5);
-                    width: calc($size * 40);
-                    border-radius: 50%;
-                    background-color: black;
-                    transform: rotate(0deg) translate(-150%, calc($size * 40));
-                    margin-block: calc($size * 10);
-                }
-            }
-
-            .right {
-                .stripe {
-                    top: 50%;
-                    left: calc($size * 10);
-                    height: calc($size * 5);
-                    width: calc($size * 40);
-                    border-radius: 50%;
-                    background-color: black;
-                    transform: rotate(0deg) translate(270%, 0);
-                    margin-block: calc($size * 10);
-                }
-            }
-        }
-
-        .mouth {
-            position: relative;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            height: calc($size * 14 / 2);
-            width: calc($size * 14);
-
-            &::before {
-                content: "";
-                position: absolute;
-                left: 0;
-                transform: translate(-50%, -50%);
-                border: calc($size * 3) solid black;
-                height: calc($size * 7);
-                width: calc($size * 14);
-                border-radius: 0 0 calc($size * 125) calc($size * 125);
-                border-top: none;
-            }
-
-            &::after {
-                content: "";
-                position: absolute;
-                left: calc($size * 15);
-                transform: translate(-50%, -50%);
-                border: calc($size * 3) solid black;
-                height: calc($size * 7);
-                width: calc($size * 14);
-                border-radius: 0 0 calc($size * 125) calc($size * 125);
-                border-top: none;
-            }
-
-
-
-
-        }
-
-        .mouth_ {
-            border-radius: 50%;
-            background-color: rgb(239, 103, 187);
-            height: calc($size * 20);
-            width: calc($size * 30);
-            position: absolute;
+            background-color: #f3f3f3;
             top: 50%;
             left: 50%;
-            right: 50%;
-            margin: auto;
-            transform: translate(-20%, 50%);
+            border: $border;
+            height: calc($size * 180);
+            width: calc($size * 210);
+            border-radius: 60% 60% 50% 50%;
+            transform: translate(-50%, -50%);
+            animation: headMove 5s alternate infinite;
 
-            &.close {
-                transition: all 0.5s ease-in-out;
-                // transform-origin: top;
-                animation: mouthclose 1s alternate forwards;
-                transform: scale(0);
-                // @keyframes mouthclose {
-                //     100% {
-                //         transform: scale(0);
-                //     }
-                // }
+            @keyframes headMove {
+                0% {
+                    transform: translate(-50%, -45%);
+                }
+
+                100% {
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+
+
+        .hat {
+            z-index: 100;
+            position: absolute;
+            top: calc($size * -120);
+            object-fit: contain;
+        }
+
+        .ears {
+            position: absolute;
+            background-color: $secondary;
+            top: 50%;
+            left: 50%;
+            /*   margin-top:-25px; */
+        }
+
+        .ears::before {
+            content: "";
+            position: absolute;
+            background-color: $secondary;
+            margin-left: calc($size * -35);
+            border: $border;
+            height: calc($size * 150);
+            width: calc($size * 150);
+            background-clip: content-box;
+            box-shadow: inset 0 0 0 calc($size * 15) #f3f3f3;
+            border-radius: calc($size * 5) 90% 0 90%;
+            // transform: skewX(10deg);
+            // transform: skewY(10deg);
+            transform: translate(-50%, -65%);
+            animation: earleft 1s alternate infinite;
+
+            @keyframes earleft {
+                0% {
+                    transform: translate(-50%, -65%);
+                }
+
+                100% {
+                    transform: translate(-50%, -65%) rotate(10deg);
+                }
             }
 
-            &.open {
-                // transform-origin: top;
-                transition: all 0.2s ease-in-out;
-                // display: block;
+        }
 
-                animation: mouth 0.5s alternate forwards;
+        .ears::after {
+            content: "";
+            position: absolute;
+            background-color: $secondary;
+            /*   margin: 50px 0 0 50px; */
+            margin-left: calc($size * 35);
+            border: $border;
+            height: calc($size * 150);
+            width: calc($size * 150);
+            background-clip: content-box;
+            box-shadow: inset 0 0 0 calc($size * 15) #f3f3f3;
+            border-radius: 90% calc($size * 5) 90% 0;
+            transform: skewX(-10deg);
+            transform: skewY(-10deg);
+            transform: translate(-50%, -65%);
 
-                @keyframes mouth {
+            animation: earright 1.4s alternate infinite;
+            animation-delay: 0.5s;
+
+            @keyframes earright {
+                0% {
+                    transform: translate(-50%, -65%);
+                }
+
+                100% {
+                    transform: translate(-50%, -65%) rotate(10deg);
+                }
+            }
+        }
+
+        .face {
+            position: absolute;
+            background-color: #fff;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /*   border: 1px solid black; */
+            height: calc($size * 90);
+            width: calc($size * 100);
+            border-radius: 50%;
+
+            .stripes {
+                // border: 1px solid black;
+                position: absolute;
+
+                .left {
+                    .stripe {
+                        top: 50%;
+                        left: calc($size * -10);
+                        height: calc($size * 5);
+                        width: calc($size * 40);
+                        border-radius: 50%;
+                        background-color: black;
+                        transform: rotate(0deg) translate(-150%, calc($size * 40));
+                        margin-block: calc($size * 10);
+                    }
+                }
+
+                .right {
+                    .stripe {
+                        top: 50%;
+                        left: calc($size * 10);
+                        height: calc($size * 5);
+                        width: calc($size * 40);
+                        border-radius: 50%;
+                        background-color: black;
+                        transform: rotate(0deg) translate(270%, 0);
+                        margin-block: calc($size * 10);
+                    }
+                }
+            }
+
+            .mouth {
+                position: relative;
+                top: 30%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: calc($size * 14 / 2);
+                width: calc($size * 14);
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    transform: translate(-50%, -50%);
+                    border: calc($size * 3) solid black;
+                    height: calc($size * 7);
+                    width: calc($size * 14);
+                    border-radius: 0 0 calc($size * 125) calc($size * 125);
+                    border-top: none;
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: calc($size * 15);
+                    transform: translate(-50%, -50%);
+                    border: calc($size * 3) solid black;
+                    height: calc($size * 7);
+                    width: calc($size * 14);
+                    border-radius: 0 0 calc($size * 125) calc($size * 125);
+                    border-top: none;
+                }
+
+                &.meow {
+                    background-color: red;
+                }
+
+
+                .tongue {
+                    isolation: isolate;
+                    position: absolute;
+                    top: calc($size * 9);
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    height: calc($size * 20);
+                    width: calc($size * 20);
+                    border-radius: 50%;
+                    background-color: rgb(214, 49, 129);
+                    animation: tongue 0.5s alternate infinite;
+                    animation-delay: 0.5s;
+                    border-top-left-radius: 0px;
+                    border-top-right-radius: 0px;
+                    z-index: -1;
+                    transition: all 0.5s ease-in-out;
+                }
+            }
+
+            .mouth_ {
+                border-radius: 50%;
+                background-color: rgb(239, 103, 187);
+                height: calc($size * 20);
+                width: calc($size * 30);
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                right: 50%;
+                margin: auto;
+                transform: translate(-20%, 50%);
+
+                &.close {
+                    transition: all 0.5s ease-in-out;
+                    // transform-origin: top;
+                    animation: mouthclose 1s alternate forwards;
+                    transform: scale(0);
+                    // @keyframes mouthclose {
+                    //     100% {
+                    //         transform: scale(0);
+                    //     }
+                    // }
+                }
+
+                &.open {
+                    // transform-origin: top;
+                    transition: all 0.2s ease-in-out;
+                    // display: block;
+
+                    animation: mouth 0.5s alternate forwards;
+
+                    @keyframes mouth {
+                        100% {
+                            transform: scale(2) translate(-20%, 50%);
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .eyes {
+            position: relative;
+            background-color: transparent;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: calc($size * 30);
+            width: calc($size * 30);
+            border-radius: 50%;
+            // box-shadow: -50px 10px 0 #000, 50px 10px 0 #000;
+            box-shadow: calc($size * -50) calc($size * 10) 0 #000, calc($size * 50) calc($size * 10) 0 #000;
+            animation: eyes 5s infinite alternate;
+            transform-origin: bottom;
+
+            &.happy {
+                animation: none;
+                // box-shadow: calc($size * -50) calc($size * -20) 0 #000, calc($size * 50) calc($size * -20) 0px #000;
+                transform: translate(-50%, -50%) scaleY(0.1) skew(10deg);
+            }
+
+            @keyframes eyes {
+
+                0% {
+                    transform: translate(-50%, -50%) scaleY(0.1);
+                }
+
+                5% {
+                    transform: translate(-50%, -50%);
+                }
+
+                100% {
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+
+        .nose {
+            position: relative;
+            // background-color: pink;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: calc($size * 10);
+            width: calc($size * 15);
+            border-radius: 50%;
+            border-bottom: calc($size * 7) solid black;
+        }
+
+
+
+
+        .body {
+            position: absolute;
+            background-color: #f3f3f3;
+            top: calc($size * 190);
+            left: 50%;
+            transform: translate(-50%, 70%);
+            border: $border;
+            height: calc($size * 100);
+            width: calc($size * 120);
+            border-radius: 50% 50% calc($size * 25) calc($size * 25);
+            z-index: -1;
+
+            #collar {
+                position: absolute;
+                background-color: #faea12;
+                top: calc($size * 20);
+                left: 0;
+                border: calc($size * 4) solid black;
+                height: calc($size * 20);
+                width: 100%;
+                z-index: 10;
+                transform: scale(1.1);
+                border-radius: calc($size * 7);
+            }
+
+            #ribbon {
+                position: absolute;
+                // top: calc($size * 5);
+                top: 0;
+                left: 0;
+                height: calc($size * 80);
+                width: 100%;
+                z-index: 10;
+                // transform: scale(1.1);
+                border-radius: calc($size * 7);
+
+                animation: ribbon 3s infinite alternate;
+
+                @keyframes ribbon {
+                    0% {
+                        transform: skew(0);
+                    }
+
+                    7% {
+                        transform: skew(15deg);
+                    }
+
+                    14% {
+                        transform: skew(-15deg);
+                    }
+
+
+                    20% {
+                        transform: skew(0);
+                    }
+
                     100% {
-                        transform: scale(2) translate(-20%, 50%);
+                        // transform: translate(-50%, -50%) rotate(360deg);
                     }
                 }
             }
         }
 
-    }
 
-    .eyes {
-        position: relative;
-        background-color: transparent;
-        top: 20%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: calc($size * 30);
-        width: calc($size * 30);
-        border-radius: 50%;
-        // box-shadow: -50px 10px 0 #000, 50px 10px 0 #000;
-        box-shadow: calc($size * -50) calc($size * 10) 0 #000, calc($size * 50) calc($size * 10) 0 #000;
-        animation: eyes 5s infinite alternate;
-        transform-origin: bottom;
-
-        &.happy {
-            animation: none;
-            // box-shadow: calc($size * -50) calc($size * -20) 0 #000, calc($size * 50) calc($size * -20) 0px #000;
-            transform: translate(-50%, -50%) scaleY(0.1) skew(10deg);
-        }
-
-        @keyframes eyes {
-
-            0% {
-                transform: translate(-50%, -50%) scaleY(0.1);
-            }
-
-            5% {
-                transform: translate(-50%, -50%);
-            }
-
-            100% {
-                transform: translate(-50%, -50%);
-            }
-        }
-    }
-
-    .nose {
-        position: relative;
-        // background-color: pink;
-        top: 20%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: calc($size * 10);
-        width: calc($size * 15);
-        border-radius: 50%;
-        border-bottom: calc($size * 7) solid black;
-    }
-
-
-
-
-    .body {
-        position: absolute;
-        background-color: #f3f3f3;
-        top: calc($size * 190);
-        left: 50%;
-        transform: translate(-50%, 70%);
-        border: $border;
-        height: calc($size * 100);
-        width: calc($size * 120);
-        border-radius: 50% 50% calc($size * 25) calc($size * 25);
-        z-index: -1;
-
-        #collar {
+        .body::before {
+            content: "";
             position: absolute;
-            background-color: #faea12;
-            top: calc($size * 20);
-            left: 0;
+            background-color: #fff;
+            top: 50%;
+            left: 50%;
+            transform: translate(- 50%, -80%);
+            height: calc($size * 60);
+            width: calc($size * 60);
+            z-index: 3;
+            border-radius: 50%;
+            border-top: none;
+        }
+
+        .frontleg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: calc($size * 135) 0 0 0;
+            transform: translate(-50%, -50%);
+            width: calc($size * 20);
+
+
+            &::before {
+                content: "";
+                position: absolute;
+                background-color: #f3f3f3;
+                left: -90%;
+                height: calc($size * 30);
+                width: calc($size * 20);
+                border: calc($size * 4) solid black;
+                border-radius: 0 0 50% 50%;
+                border-top: none;
+                // animation: frontleg 2s infinite alternate;
+
+                // @keyframes frontleg {
+                //     100% {
+                //         transform: rotate(45deg) translate(-50%, -50%);
+                //     }
+                // }
+            }
+
+
+            &::after {
+                content: "";
+                position: absolute;
+                background-color: #f3f3f3;
+                left: 90%;
+                height: calc($size * 30);
+                width: calc($size * 20);
+                border: calc($size * 4) solid black;
+                border-radius: 0 0 50% 50%;
+                border-top: none;
+            }
+        }
+
+
+        .backleg {
+            position: absolute;
+            background-color: #f3f3f3;
+            top: 50%;
+            left: 50%;
+            margin: calc($size * 153) 0 0 0;
+            z-index: -2;
+        }
+
+        .backleg::before {
+            content: "";
+            position: absolute;
+            background-color: #f3f3f3;
+            top: calc($size * -10);
+            left: calc($size * -60);
+            width: calc($size * 12);
+            height: calc($size * 12);
             border: calc($size * 4) solid black;
-            height: calc($size * 20);
-            width: 100%;
-            z-index: 10;
-            transform: scale(1.1);
-            border-radius: calc($size * 7);
+            border-radius: 50% 0 0 50%;
+            transform: skewX(-10deg);
+            transform: skewY(-10deg);
         }
 
-        #ribbon {
+        .backleg::after {
+            content: "";
             position: absolute;
-            // top: calc($size * 5);
-            top: 0;
-            left: 0;
-            height: calc($size * 80);
-            width: 100%;
-            z-index: 10;
-            // transform: scale(1.1);
-            border-radius: calc($size * 7);
+            background-color: #f3f3f3;
+            top: calc($size * -10);
+            left: calc($size * 40);
+            width: calc($size * 12);
+            height: calc($size * 12);
+            border: calc($size * 4) solid black;
+            border-radius: 0 50% 50% 0;
+            transform: skewX(10deg);
+            transform: skewY(10deg);
+        }
 
-            animation: ribbon 3s infinite alternate;
+        .tail {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: calc($size * 130) 0 0 calc($size * 90 * -1);
+            z-index: -2;
+        }
 
-            @keyframes ribbon {
+        .tail::before {
+            content: "";
+            position: absolute;
+            background-color: #f3f3f3;
+            width: calc($size * 42);
+            height: calc($size * 12);
+            border: calc($size * 3) solid black;
+            border-radius: calc($size * 30) 0 0 calc($size * 50);
+            transform: rotate(50deg);
+            transform-origin: right center;
+            animation: tail 1s infinite alternate;
+
+            @keyframes tail {
+
                 0% {
-                    transform: skew(0);
+                    transform: rotate(50deg);
                 }
 
-                7% {
-                    transform: skew(15deg);
-                }
-
-                14% {
-                    transform: skew(-15deg);
-                }
-
-
-                20% {
-                    transform: skew(0);
+                50% {
+                    transform: rotate(30deg);
                 }
 
                 100% {
-                    // transform: translate(-50%, -50%) rotate(360deg);
+                    transform: rotate(50deg);
                 }
             }
         }
+
+        // .tail::after {
+        //     content: "";
+        //     position: absolute;
+        //     background-color: #fff;
+        //     margin: -20px 0 0 18px;
+        //     width: 12px;
+        //     height: 12px;
+        //     border-radius: 30px 0 0 50px;
+        //     transform: rotate(50deg);
+        //     transform-origin: right center;
+        // }
     }
-
-
-    .body::before {
-        content: "";
-        position: absolute;
-        background-color: #fff;
-        top: 50%;
-        left: 50%;
-        transform: translate(- 50%, -80%);
-        height: calc($size * 60);
-        width: calc($size * 60);
-        z-index: 3;
-        border-radius: 50%;
-        border-top: none;
-    }
-
-    .frontleg {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: calc($size * 135) 0 0 0;
-        transform: translate(-50%, -50%);
-        width: calc($size * 20);
-
-
-        &::before {
-            content: "";
-            position: absolute;
-            background-color: #f3f3f3;
-            left: -90%;
-            height: calc($size * 30);
-            width: calc($size * 20);
-            border: calc($size * 4) solid black;
-            border-radius: 0 0 50% 50%;
-            border-top: none;
-            // animation: frontleg 2s infinite alternate;
-
-            // @keyframes frontleg {
-            //     100% {
-            //         transform: rotate(45deg) translate(-50%, -50%);
-            //     }
-            // }
-        }
-
-
-        &::after {
-            content: "";
-            position: absolute;
-            background-color: #f3f3f3;
-            left: 90%;
-            height: calc($size * 30);
-            width: calc($size * 20);
-            border: calc($size * 4) solid black;
-            border-radius: 0 0 50% 50%;
-            border-top: none;
-        }
-    }
-
-
-    .backleg {
-        position: absolute;
-        background-color: #f3f3f3;
-        top: 50%;
-        left: 50%;
-        margin: calc($size * 153) 0 0 0;
-        z-index: -2;
-    }
-
-    .backleg::before {
-        content: "";
-        position: absolute;
-        background-color: #f3f3f3;
-        top: calc($size * -10);
-        left: calc($size * -60);
-        width: calc($size * 12);
-        height: calc($size * 12);
-        border: calc($size * 4) solid black;
-        border-radius: 50% 0 0 50%;
-        transform: skewX(-10deg);
-        transform: skewY(-10deg);
-    }
-
-    .backleg::after {
-        content: "";
-        position: absolute;
-        background-color: #f3f3f3;
-        top: calc($size * -10);
-        left: calc($size * 40);
-        width: calc($size * 12);
-        height: calc($size * 12);
-        border: calc($size * 4) solid black;
-        border-radius: 0 50% 50% 0;
-        transform: skewX(10deg);
-        transform: skewY(10deg);
-    }
-
-    .tail {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        margin: calc($size * 130) 0 0 calc($size * 90 * -1);
-        z-index: -2;
-    }
-
-    .tail::before {
-        content: "";
-        position: absolute;
-        background-color: #f3f3f3;
-        width: calc($size * 42);
-        height: calc($size * 12);
-        border: calc($size * 3) solid black;
-        border-radius: calc($size * 30) 0 0 calc($size * 50);
-        transform: rotate(50deg);
-        transform-origin: right center;
-        animation: tail 1s infinite alternate;
-
-        @keyframes tail {
-
-            0% {
-                transform: rotate(50deg);
-            }
-
-            50% {
-                transform: rotate(30deg);
-            }
-
-            100% {
-                transform: rotate(50deg);
-            }
-        }
-    }
-
-    // .tail::after {
-    //     content: "";
-    //     position: absolute;
-    //     background-color: #fff;
-    //     margin: -20px 0 0 18px;
-    //     width: 12px;
-    //     height: 12px;
-    //     border-radius: 30px 0 0 50px;
-    //     transform: rotate(50deg);
-    //     transform-origin: right center;
-    // }
 
 }

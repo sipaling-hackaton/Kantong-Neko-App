@@ -13,6 +13,7 @@ import { Howl } from "howler";
 import ClickSfx from "@/Pages/Game/Minigame/Assets/Sounds/click.mp3";
 import PingSfx from "@/Pages/Game/Minigame/Assets/Sounds/ping.mp3";
 import WardrobeData from "@/Pages/Game/Wardrobe/WardrobeData.json";
+import AppLayout from "@/Layouts/AppLayout";
 export default function Game() {
 
     var Sound = new Howl({
@@ -30,6 +31,23 @@ export default function Game() {
         id="Game_page">
         <img src={BG} id="bg" />
         <Chest />
+
+        {/* <div className="Container" style={{
+            // scale: 0.1,
+            width: "100px",
+            height: "100px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: "50%",
+            overflow: "hidden",
+            border: "2px solid #fff",
+            backgroundColor: "white",
+            position: "relative",
+        }}
+        >
+            <Avatar outfit={wardrobe} size="0.23" />
+        </div> */}
         <Avatar outfit={wardrobe}/>
         <div id="Navigate">
             <Link onClick={() => { Sound.play() }} href="/game/minigames" className="ButtonNav">
@@ -44,4 +62,4 @@ export default function Game() {
     </div>;
 }
 
-Game.layout = (page: any, logo: any) => <Guest children={page} />;
+Game.layout = (page: any, logo: any) => <AppLayout children={page} />;

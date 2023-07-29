@@ -1,7 +1,7 @@
 #Chest {
     display: flex;
     position: fixed;
-    top: 65px;
+    top: 5px;
     margin: auto;
     width: 400px;
     max-width: 90vw;
@@ -56,9 +56,8 @@
             font-size: 20px;
             font-weight: bold;
             text-align: center;
-            margin: 10px;
             width: 100%;
-            color: rgb(107, 149, 44);
+            // color: rgb(107, 149, 44);
             font-weight: 900;
             text-align: left;
             // animation: infinite title 1s ease-in-out;
@@ -149,5 +148,40 @@
                 transform: scale(1);
             }
         }
+    }
+}
+
+
+.Chest_notif {
+    // color: white !important;
+    box-shadow: none !important;
+
+    .ant-modal-content {
+        box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.75) !important;
+        color: black !important;
+        background-color: white !important;
+    }
+
+    .ant-modal-header {
+        box-shadow: none !important;
+        // color: white !important;
+        background-color: white !important;
+        // Styles for the modal header
+        // Example: background-color, text color, etc.
+    }
+
+    .ant-modal-body {
+        // box-shadow: none !important;
+
+        // background-color: transparent !important;
+        // Styles for the modal body
+        // Example: padding, margin, etc.
+    }
+
+    .ant-modal-footer {
+        opacity: 0 !important;
+        // background-color: transparent !important;
+        // Styles for the modal footer
+        // Example: justify-content, background-color, etc.
     }
 }
