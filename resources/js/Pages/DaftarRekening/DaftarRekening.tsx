@@ -8,6 +8,8 @@ const DaftarRekening = (props: any) => {
         name: "",
         gender: null,
         birthdate: "",
+        target_amount: "",
+        time_priod: "",
     });
 
     const postBankAccount = (e: any) => {
@@ -78,6 +80,7 @@ const DaftarRekening = (props: any) => {
 
                     <InputError message={errors.gender} className="mt-2" />
                 </div>
+
                 <div className="mt-4">
                     <InputLabel
                         className="mt-2 text-white"
@@ -96,6 +99,47 @@ const DaftarRekening = (props: any) => {
                         required
                     />
                     <InputError message={errors.birthdate} className="mt-2" />
+                </div>
+                <div className="mt-4">
+                    <InputLabel
+                        className="text-white"
+                        htmlFor="name"
+                        value="Target Tabungan"
+                    />
+                    <TextInput
+                        id="name"
+                        type="number"
+                        name="target_amount"
+                        value={data.name}
+                        className="mt-1 block w-full"
+                        autoComplete="number"
+                        isFocused={true}
+                        onChange={handleInputChange}
+                    />
+
+                    <InputError
+                        message={errors.target_amount}
+                        className="mt-2"
+                    />
+                </div>
+                <div className="mt-4">
+                    <InputLabel
+                        className="text-white"
+                        htmlFor="time_period"
+                        value="Waktu Menabung dalam bulan yang ingin dicapai"
+                    />
+                    <TextInput
+                        id="time_priod"
+                        type="number"
+                        name="time_period"
+                        value={data.name}
+                        className="mt-1 block w-full"
+                        autoComplete="time"
+                        isFocused={true}
+                        onChange={handleInputChange}
+                    />
+
+                    <InputError message={errors.time_priod} className="mt-2" />
                 </div>
                 <button
                     className=" mt-4 w-full p-2 bg-[#58cc02] text-white rounded-[2rem]"
