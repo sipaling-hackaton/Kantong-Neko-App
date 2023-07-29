@@ -19,6 +19,7 @@ class TaskController extends Controller
         $rewardList = Service::getRewardList();
         return Inertia::render("Task/Quest", [
             "rewardList" => $rewardList,
+            "activeAccount" => $request->activeAccount,
         ]);
     }
 

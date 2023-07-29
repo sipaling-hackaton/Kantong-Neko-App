@@ -1,3 +1,7 @@
 [type="checkbox"]:checked {
     background-color: #7e29cd;
 }
+
+:where(.css-dev-only-do-not-override-txh9fw).ant-btn-primary {
+    background: #1677ff;
+}
