@@ -10,8 +10,7 @@ import Guest from '@/Layouts/GuestLayout'
 
 export default function Wardrobe() {
 
-
-    var wardrobe = WardrobeData[0];
+    const wardrobe = WardrobeData[1 ];
     // useEffect(() => {
     //     wardrobe = localStorage.getItem('wardrobe');
     //     // console.log("this")

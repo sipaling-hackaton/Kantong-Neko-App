@@ -9,8 +9,10 @@ import { Progress } from 'antd';
 import PingSfx from "@/Pages/Game/Minigame/Assets/Sounds/ping.mp3";
 import BonusSfx from "@/Pages/Game/Minigame/Assets/Sounds/bonus.mp3";
 import { Modal } from "antd";
+// import 'antd/dist/antd.css'; // Import Ant Design CSS
 
-export default function Chest() {
+export default function Chest({ }: any) {
+    const [points, setPoints] = useState(80);
 
     var soundTwo = new Howl({
         src: [PingSfx]
@@ -44,12 +46,14 @@ export default function Chest() {
 
 
 
-
+    // to trigger the chest open
     const handleChestClick = (e: any) => {
+        if (points < 50) return;
         e.stopPropagation();
         soundTwo.play();
         setOpened(false);
         setModal(true);
+        setPoints(points - 50);
     };
 
     const handlePlayButtonClick = (e: any) => {
@@ -61,8 +65,9 @@ export default function Chest() {
         }
         lottieRef.current.play();
         setOpened(true);
-        setNotif(true);
-
+        setTimeout(() => {
+            setNotif(true);
+        }, 1300);
     };
     return (
         <>
@@ -73,10 +78,17 @@ export default function Chest() {
                     </div>
                 </Sparkles>
                 <div id="right">
-                    <h1 id="Chest_title">
-                        Claim your chest!
+                    <h1 id="Chest_title" className={points >= 50 ? "text-green-500" : "text-red-500"}>
+                        50/{points} Point
                     </h1>
-                    <Progress percent={100} strokeColor={"green"} />
+
+                    {
+                        points >= 50 ?
+                            <p>Klaim Peti!</p>
+                            :
+                            <p>Butuh {50 - points} lagi untuk klaim</p>
+                    }
+                    <Progress percent={points >= 50 ? 100 : points} strokeColor={"green"} />
                 </div>
             </div>
 
@@ -96,11 +108,8 @@ export default function Chest() {
                     <h1>Tekan untuk buka peti harta!</h1>
                 </div>
             }
-            <Modal style={{
-                background: "transparent",
-                boxShadow: "none",
-            }} title="Basic Modal" open={notif} onOk={handleOk} onCancel={handleCancel}>
-                test
+            <Modal className="Chest_notif"  open={notif} onOk={handleOk} onCancel={handleCancel}>
+                Selamat anda mendapatkan 1000 koin!
             </Modal>
         </>
     )
