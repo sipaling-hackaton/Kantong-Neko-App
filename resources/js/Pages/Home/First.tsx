@@ -8,7 +8,7 @@ export default function Home() {
         <div className="relative flex justify-center items-center  min-h-screen">
             <img className="absolute z-10 top-0 w-screen" src={bg} />
             <div className="z-20 flex flex-col  justify-around items-center relative w-screen h-screen">
-                <div className="text-white  text-[2rem] w-fit">
+                <div className="text-white  text-[2rem] w-fit font-mouse">
                     Halo, Aku Neko
                     <br />
                     Ayo kita belajar menabung

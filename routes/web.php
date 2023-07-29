@@ -24,6 +24,20 @@ Route::get("first", function () {
     return Inertia::render("Home/First");
 })->name("first");
 
+Route::get("/daftar-rekening", function () {
+    return Inertia::render("DaftarRekening/DaftarRekening");
+})->name("daftarRek");
+
+Route::get("/daftar-rekening/select-Account", [
+    HomeController::class,
+    "DaftarAccount",
+])->name("daftarRek");
+
+Route::post("/create-rekening", [
+    HomeController::class,
+    "CreateRekening",
+])->name("createRekening");
+
 Route::get("game", GameController::class)->name("game"); //page game
 Route::get("game/minigames", [GameController::class, "Minigames"]); //page minigames
 Route::get("game/minigames/eat", [GameController::class, "EatMiniGame"]); //page minigames
