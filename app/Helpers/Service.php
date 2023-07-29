@@ -9,6 +9,7 @@ use App\Models\TermsSavings;
 use App\Models\Account;
 use App\Models\MerchantPartner;
 use App\Models\MerchantProduct;
+use App\Models\Avatar;
 
 class Service
 {
@@ -48,7 +49,12 @@ class Service
                 $res->successful() &&
                 $res->json()["success"] == Constant::STATUS_SUCCESS
             ) {
-                return $res->json()["data"]["accounts"];
+                $arrAccount = [];
+                foreach ($res->json()["data"]["accounts"] as $account) {
+                    $account = Account::find($account["accountNo"]);
+                    array_push($arrAccount, $account);
+                }
+                return $arrAccount;
             }
             throw new Exception("Gagal mengambil data list rekening");
         } catch (Exception $e) {
@@ -74,16 +80,15 @@ class Service
                 $res->json()["success"] == Constant::STATUS_SUCCESS
             ) {
                 $activeAccount = $res->json()["data"];
-                $account = Account::where(
-                    "account_number",
-                    $accountNumber
-                )->first();
-                $termsSavings = $account->termsSavings;
+                $account = Account::find($accountNumber);
+                $termsSavings = $account->currentSavings;
                 $termsSavings["instalment"] = ceil(
                     $termsSavings["target_amount"] /
                         $termsSavings["time_period"]
                 );
-                $avatar = $account->avatar;
+                $avatar = Avatar::with("hat", "ribbon")->find(
+                    $account->avatar->id
+                );
                 // Calculate the progress of the savings in percentage
                 $termsSavings["amount_progress"] =
                     $activeAccount["balance"] > 0
@@ -95,6 +100,8 @@ class Service
                         : 0;
                 $activeAccount["termsSavings"] = $termsSavings;
                 $activeAccount["avatar"] = $avatar;
+                $activeAccount["exp"] = $account->exp;
+                $activeAccount["fullName"] = $account->name;
                 return $activeAccount;
             }
             throw new Exception("Gagal mengambil data rekening");

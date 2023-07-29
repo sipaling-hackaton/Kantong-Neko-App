@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\Avatar;
+use App\Models\MerchantProduct;
+use App\Models\User;
+use App\Models\TermsSavings;
 
 class Account extends Model
 {
@@ -29,7 +32,12 @@ class Account extends Model
 
     public function termSavings(): HasMany
     {
-        return $this->hasMany(TermSaving::class);
+        return $this->hasMany(TermsSavings::class);
+    }
+
+    public function currentSavings(): HasOne
+    {
+        return $this->hasOne(TermsSavings::class)->latestOfMany();
     }
 
     public function claimedRewards(): BelongsToMany

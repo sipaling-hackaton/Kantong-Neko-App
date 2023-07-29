@@ -15,20 +15,19 @@ import PingSfx from "@/Pages/Game/Minigame/Assets/Sounds/ping.mp3";
 import WardrobeData from "@/Pages/Game/Wardrobe/WardrobeData.json";
 import AppLayout from "@/Layouts/AppLayout";
 
-
 export default function Game({ ItemData }: any) {
 
+
     var Sound = new Howl({
-        src: [ClickSfx]
+        src: [ClickSfx],
     });
 
     var soundTwo = new Howl({
-        src: [PingSfx]
+        src: [PingSfx],
     });
 
     // placeholder
     const wardrobe = WardrobeData[0];
-
     // 
     useEffect(() => {
         console.log(ItemData);
@@ -47,8 +46,9 @@ export default function Game({ ItemData }: any) {
                 <img src="https://www.svgrepo.com/show/234613/clothes-shirt.svg" alt="" />
                 {/* Wardrobe */}
             </Link>
+
         </div>
-    </div>;
+    );
 }
 
 Game.layout = (page: any, logo: any) => <AppLayout children={page} />;

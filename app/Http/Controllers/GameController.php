@@ -14,17 +14,17 @@ class GameController extends Controller
 {
     public function __invoke(Request $request, AvatarAttr $avatarAttr)
     {
-
         $avatarAttr = AvatarAttr::all();
         return Inertia::render('Game/Game', [
-            'ItemData' => $avatarAttr
+            'ItemData' => $avatarAttr,
+            "activeAccount" => $request->activeAccount,
         ]);
     }
 
 
     public function Minigames()
     {
-        return Inertia::render('Game/Minigame/Minigame');
+        return Inertia::render("Game/Minigame/Minigame");
     }
 
 
@@ -34,9 +34,8 @@ class GameController extends Controller
     }
     public function EatMiniGame()
     {
-        return Inertia::render('Game/Minigame/Eat/Eat');
+        return Inertia::render("Game/Minigame/Eat/Eat");
     }
-
 
     // wardrobe
     public function Wardrobe(AvatarAttr $avatarAttr, Avatar $avatar, Service $service)
@@ -48,5 +47,6 @@ class GameController extends Controller
             'ItemData' => $avatarAttr,
             'current' => $avatar
         ]);
+
     }
 }

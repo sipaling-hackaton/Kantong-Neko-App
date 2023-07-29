@@ -1,11 +1,39 @@
+import React, { useEffect } from "react";
 import AppLayout from "@/Layouts/AppLayout";
 import Lottie from "lottie-react";
 import animationData from "./Assets/animation_lkmhtcno.json";
 import bg from "./Assets/bg2.png";
 import { useState } from "react";
+import moment from "moment";
+import "moment/dist/locale/id";
+moment.locale("id");
 
 export default function Home(props: any) {
-    console.log(props);
+    useEffect(() => {
+        console.log(props);
+    }, []);
+
+    const handleRemainingTargetDate = () => {
+        const startDate = moment(props.activeAccount.termsSavings.start_date);
+        const targetDate = startDate.add(
+            props.activeAccount.termsSavings.time_period,
+            "months"
+        );
+        const diff = targetDate.diff(moment());
+        return moment.duration(diff).humanize();
+    };
+
+    const handleRemainingTargetDatePercentage = () => {
+        const startDate = moment(props.activeAccount.termsSavings.start_date);
+        const targetDate = startDate.add(
+            props.activeAccount.termsSavings.time_period,
+            "months"
+        );
+        const diff = targetDate.diff(moment());
+        const percentage = 100 - moment.duration(diff).asMilliseconds() / 1000;
+        return percentage;
+    };
+
     const [blur, setBlur] = useState(true);
     return (
         <div className="relative bg-[#f5f0e8] min-h-[90vh]">
@@ -13,7 +41,9 @@ export default function Home(props: any) {
                 <img className="absolute z-10 w-screen" src={bg} />
                 <div className="relative flex flex-col justify-center font-memo z-20 text-white mx-4 min-h-[30vh] font-poppins text-[2rem]">
                     <span>Halo,</span>
-                    <h1 className="font-bold">NINOK!</h1>
+                    <h1 className="font-bold max-w-[60%] font-extrabold">
+                        {props.activeAccount.fullName}!
+                    </h1>
                 </div>
                 <div className="z-20 relative bg-white text-[#fdb712]  text-white flex flex-col justify-center items-center mx-4 rounded-lg p-4">
                     <Lottie
@@ -36,7 +66,7 @@ export default function Home(props: any) {
                             onClick={() => setBlur(!blur)}
                             className="text-[3rem] text-[#fdb712] text-[2rem] font-mouse font-bold"
                         >
-                            {blur ? "*******" : "1.250.000"}
+                            {blur ? "*******" : props.activeAccount.balance}
                         </span>
                     </div>
                 </div>
@@ -46,7 +76,7 @@ export default function Home(props: any) {
                     </span>
                     <div className="text-[#871fb8] text-mouse">
                         <span className="text-[3rem] font-mouse font-bold">
-                            2500
+                            {props.activeAccount.exp}
                         </span>
                         <span className="font-mouse font-bold">xp</span>
                     </div>
@@ -58,8 +88,7 @@ export default function Home(props: any) {
                     <div
                         className="flex justify-center items-center rounded-full w-32 h-32  self-center"
                         style={{
-                            backgroundImage:
-                                "conic-gradient(#fdb202 20%,#fbf1e9 0)",
+                            backgroundImage: `conic-gradient(#fdb202 ${props.activeAccount.termsSavings.amount_progress}%,#fbf1e9 0)`,
                         }}
                     >
                         <div className="p-8  rounded-full bg-white">
@@ -92,15 +121,16 @@ export default function Home(props: any) {
                     <span className="text-[0.7rem] mt-4 font-poppins font-medium">
                         TARGET SALDO KAMU
                     </span>
-                    <span className="font-bold font-poppins">Rp 50 Juta</span>
+                    <span className="font-bold font-poppins">
+                        Rp {props.activeAccount.termsSavings.target_amount}
+                    </span>
                 </div>
 
                 <div className="bg-white flex flex-col p-4 rounded-lg w-1/2">
                     <div
                         className="flex justify-center items-center rounded-full w-32 h-32  self-center"
                         style={{
-                            backgroundImage:
-                                "conic-gradient(#871fb8 90%,#fbf1e9 0)",
+                            backgroundImage: `conic-gradient(#871fb8 ${handleRemainingTargetDatePercentage()}%,#fbf1e9 0)`,
                         }}
                     >
                         <div className="p-8  rounded-full bg-white">
@@ -122,7 +152,7 @@ export default function Home(props: any) {
                         WAKTU KAMU UNTUK NABUNG
                     </span>
                     <span className="font-bold font-poppins">
-                        3 bulan, 2 tahun
+                        {handleRemainingTargetDate()}
                     </span>
                 </div>
             </div>
