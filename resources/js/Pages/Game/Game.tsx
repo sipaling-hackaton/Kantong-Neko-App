@@ -14,7 +14,9 @@ import ClickSfx from "@/Pages/Game/Minigame/Assets/Sounds/click.mp3";
 import PingSfx from "@/Pages/Game/Minigame/Assets/Sounds/ping.mp3";
 import WardrobeData from "@/Pages/Game/Wardrobe/WardrobeData.json";
 import AppLayout from "@/Layouts/AppLayout";
-export default function Game() {
+export default function Game(props: any) {
+    console.log(props);
+
     var Sound = new Howl({
         src: [ClickSfx],
     });

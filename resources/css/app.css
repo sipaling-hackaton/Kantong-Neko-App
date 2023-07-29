@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: Mouse Memoirs;
-    src: url("../../public/font/Mouse\ Memoirs/@font-face");
+    src: url("/font/Mouse\ Memoirs/MouseMemoirs-Regular.ttf");
 }
 
 .font-mouse {

@@ -24,20 +24,6 @@ Route::get("first", function () {
     return Inertia::render("Home/First");
 })->name("first");
 
-Route::get("/daftar-rekening", function () {
-    return Inertia::render("DaftarRekening/DaftarRekening");
-})->name("daftarRek");
-
-Route::get("/daftar-rekening/select-Account", [
-    HomeController::class,
-    "DaftarAccount",
-])->name("daftarRek");
-
-Route::post("/create-rekening", [
-    HomeController::class,
-    "CreateRekening",
-])->name("createRekening");
-
 Route::get("game", GameController::class)->name("game"); //page game
 Route::get("game/minigames", [GameController::class, "Minigames"]); //page minigames
 Route::get("game/minigames/eat", [GameController::class, "EatMiniGame"]); //page minigames
@@ -45,12 +31,26 @@ Route::get("game/wardrobe", [GameController::class, "Wardrobe"]); //page minigam
 
 Route::get("task", TaskController::class)->name("task"); //page task
 Route::middleware(["auth"])->group(function () {
-    Route::get("game", GameController::class)->name("game"); //page game
+    Route::middleware("auth.hasAccount")->group(function () {
+        Route::get("game", GameController::class)->name("game"); //page game
+        Route::get("task", TaskController::class)->name("task"); //page task
+        Route::get("quest", [TaskController::class, "QuestRewards"])->name(
+            "quest"
+        );
+    });
 
-    Route::get("task", TaskController::class)->name("task"); //page task
-    Route::get("quest", [TaskController::class, "QuestRewards"])->name("quest");
-
-    Route::get("/", HomeController::class)->name("home");
+    // Route to handle account
+    Route::controller(HomeController::class)->group(function () {
+        Route::middleware("auth.hasAccount")->group(function () {
+            Route::get("/", "index")->name("home");
+        });
+        Route::post("/", "store")->name("home.store");
+        Route::prefix("/daftar-rekening")->group(function () {
+            Route::get("/", "ViewCreateRekening")->name("daftarRek");
+            Route::post("/", "CreateRekening")->name("daftarRek.store");
+            Route::get("/select-account", "DaftarAccount")->name("daftarRek");
+        });
+    });
 });
 
 // Route::get("/", function () {

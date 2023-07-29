@@ -15,12 +15,12 @@ class Avatar extends Model
 
     public function hat(): HasOne
     {
-        return $this->hasOne(AvatarAttr::class, "hat_id");
+        return $this->hasOne(AvatarAttr::class, "id");
     }
 
     public function ribbon(): HasOne
     {
-        return $this->hasOne(AvatarAttr::class, "ribbon_id");
+        return $this->hasOne(AvatarAttr::class, "id");
     }
 
     public function account(): BelongsTo

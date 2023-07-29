@@ -1,14 +1,20 @@
 import { useForm, Link } from "@inertiajs/react";
 import plus from "./Assets/plus.svg";
+import { useEffect } from "react";
 
 const SelectAccount = (props: any) => {
     const { data, setData, post, processing, errors, reset } = useForm({
-        accountNo: "",
+        account_id: "",
     });
 
-    const postAccount = (value: any) => {
-        setData(value);
-        post(route("home"));
+    useEffect(() => {
+        if (data.account_id !== "") {
+            post(route("home.store"));
+        }
+    }, [data]);
+
+    const handleInputChange = (id: any) => {
+        setData("account_id", id);
     };
 
     // const bankAccounts = ["1", "2", "3"];
@@ -29,14 +35,15 @@ const SelectAccount = (props: any) => {
                 Pilih Atau Tambah Rekening
             </h1>
             <div className="w-screen flex flex-wrap p-4 gap-4 justify-center items-center">
-                {props.bankAccounts &&
-                    props.bankAccounts.map((e: any, index: number) => {
+                {props.listAccount &&
+                    props.listAccount.map((e: any, index: number) => {
                         return (
-                            <img
+                            <button
                                 className="w-1/4 bg-white rounded-[2rem] p-4"
-                                src={randomImg()}
-                                onClick={() => postAccount(e.accountNo)}
-                            />
+                                onClick={() => handleInputChange(e.id)}
+                            >
+                                <img src={randomImg()} />
+                            </button>
                         );
                     })}
                 <Link className="w-1/4" href="/daftar-rekening">
