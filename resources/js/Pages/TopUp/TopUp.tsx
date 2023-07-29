@@ -20,7 +20,7 @@ const TopUp = () => {
     };
 
     return (
-        <div className="relative bg-[#f6f1e9] min-h-[90vh] flex flex-col justify-around">
+        <div className="self-center mx-auto max-w-[750px] relative bg-[#f6f1e9] min-h-[90vh] flex flex-col justify-around">
             <img
                 style={{
                     top: "0px",

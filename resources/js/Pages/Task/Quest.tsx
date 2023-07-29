@@ -44,11 +44,11 @@ export default function Task(props: any) {
     ];
 
     return (
-        <div className="min-h-[90vh] bg-[#F6F1E9]">
+        <div className="mx-auto max-w-[750px] min-h-[90vh] bg-[#F6F1E9]">
             <div className="relative flex flex-col text-center min-h-[50vh] items-center">
-                <img className="z-10 absolute w-screen  w-[100vw]" src={bg} />
+                <img className="z-10 absolute w-screen  w-[100%]" src={bg} />
                 <Lottie
-                    style={{ width: "60vw", bottom: "-0%", right: "3%" }}
+                    style={{ width: "60%", bottom: "-0%", right: "3%" }}
                     className="z-10 absolute"
                     animationData={animationData}
                 />
@@ -89,7 +89,7 @@ export default function Task(props: any) {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className="">
                 <div className="relative flex z-20 text-[#7e29cd] border-[#7e29cd] bg-white border-4 rounded-[2rem] p-1 mx-4">
                     <div
                         style={{
@@ -121,8 +121,9 @@ export default function Task(props: any) {
                         REWARDS
                     </span>
                 </div>
-
-                {questRewardsArrays[active]}
+                <div className="relative z-20">
+                    {questRewardsArrays[active]}
+                </div>
             </div>
         </div>
     );
@@ -130,10 +131,10 @@ export default function Task(props: any) {
 
 const Quests = ({ data }: any) => {
     return (
-        <Link href={"/quest/detail/" + (data.id - 1)}>
-            <div className="p-4">
-                {data.map((e: any) => {
-                    return (
+        <div className="p-4 relative z-20">
+            {data.map((e: any, index: any) => {
+                return (
+                    <Link className="" href={"/quest/detail/" + index}>
                         <div className="flex justify-between p-2">
                             <div className="flex gap-4">
                                 <img src="https://cdn.discordapp.com/attachments/1134526928834015253/1134538232550408302/Search.png" />
@@ -153,10 +154,10 @@ const Quests = ({ data }: any) => {
                                 readOnly
                             />
                         </div>
-                    );
-                })}
-            </div>
-        </Link>
+                    </Link>
+                );
+            })}
+        </div>
     );
 };
 
