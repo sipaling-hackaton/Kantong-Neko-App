@@ -19,8 +19,10 @@ export class Object extends React.Component<{ ObjectRef?: any, Eaten?: any, Imag
         };
     }
 
+
     render() {
         const { ObjectRef, Eaten, Image } = this.props;
+   
         return (
             // <Sparkles>
             <motion.img
@@ -34,7 +36,11 @@ export class Object extends React.Component<{ ObjectRef?: any, Eaten?: any, Imag
                 ref={ObjectRef}
                 drag
                 dragSnapToOrigin
-                src={Image} alt="" />
+                src={Image} alt=""
+                style={{
+                    touchAction: "none",
+                }}
+            />
             // </Sparkles>
         )
     }
