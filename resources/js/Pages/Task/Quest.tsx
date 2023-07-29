@@ -9,7 +9,8 @@ import animationData from "./Assets/animation_lkn2qa7f.json";
 import checked from "./Assets/cheked.svg";
 import circleBox from "./Assets/circleBox.svg";
 
-export default function Task() {
+export default function Task(props: any) {
+    console.log(props);
     const [active, setActive] = useState(0);
     const questsArr = [
         { title: "MENCARI SI NEKO", status: true },
@@ -18,31 +19,31 @@ export default function Task() {
         { title: "SIAPAKAH ITU", status: false },
     ];
 
-    const rewardsArr = [
-        {
-            title: "1000 XP",
-            subtitle: "CHATIME 1PCS",
-            img: "https://cdn.discordapp.com/attachments/1134526928834015253/1134543368517603439/chatime.jpg",
-        },
-        {
-            title: "1000 XP",
-            subtitle: "CHATIME 1PCS",
-            img: "https://cdn.discordapp.com/attachments/1134526928834015253/1134543368517603439/chatime.jpg",
-        },
-        {
-            title: "1000 XP",
-            subtitle: "CHATIME 1PCS",
-            img: "https://cdn.discordapp.com/attachments/1134526928834015253/1134543368517603439/chatime.jpg",
-        },
-    ];
+    // const rewardsArr = [
+    //     {
+    //         title: "1000 XP",
+    //         subtitle: "CHATIME 1PCS",
+    //         img: "https://cdn.discordapp.com/attachments/1134526928834015253/1134543368517603439/chatime.jpg",
+    //     },
+    //     {
+    //         title: "1000 XP",
+    //         subtitle: "CHATIME 1PCS",
+    //         img: "https://cdn.discordapp.com/attachments/1134526928834015253/1134543368517603439/chatime.jpg",
+    //     },
+    //     {
+    //         title: "1000 XP",
+    //         subtitle: "CHATIME 1PCS",
+    //         img: "https://cdn.discordapp.com/attachments/1134526928834015253/1134543368517603439/chatime.jpg",
+    //     },
+    // ];
 
     const questRewardsArrays = [
         <Quests data={questsArr} />,
-        <Rewards data={rewardsArr} />,
+        <Rewards data={props.rewardList} />,
     ];
 
     return (
-        <div className="min-h-[90vh]">
+        <div className="min-h-[90vh] bg-[#F6F1E9]">
             <div className="relative flex flex-col text-center min-h-[50vh] items-center">
                 <img className="z-10 absolute w-screen  w-[100vw]" src={bg} />
                 <Lottie
@@ -151,16 +152,21 @@ const Quests = ({ data }: any) => {
 
 const Rewards = ({ data }: any) => {
     return (
-        <div className="p-4 w-full">
+        <div className="p-4 w-full flex flex-col gap-4">
             {data.map((e: any) => {
                 return (
-                    <div className="flex justify-between p-4">
-                        <div className="flex flex-col">
-                            <div>{e.title}</div>
-                            <div>{e.subtitle}</div>
+                    <div className="flex justify-between p-4 gap-2 bg-white rounded-xl drop-shadow-sm">
+                        <div className="flex flex-col text-[#7e29cd]">
+                            <div className="font-mouse text-4xl">
+                                {e.xp_price} EXP
+                            </div>
+                            <div className="text-md">{e.name}</div>
                         </div>
 
-                        <img src={e.img} />
+                        <img
+                            className="max-w-[80px] h-auto object-contain"
+                            src={e.image}
+                        />
                     </div>
                 );
             })}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Inertia\Inertia;
+use App\Helpers\Service;
 
 class TaskController extends Controller
 {
@@ -15,6 +16,9 @@ class TaskController extends Controller
 
     public function QuestRewards(Request $request)
     {
-        return Inertia::render("Task/Quest");
+        $rewardList = Service::getRewardList();
+        return Inertia::render("Task/Quest", [
+            "rewardList" => $rewardList,
+        ]);
     }
 }

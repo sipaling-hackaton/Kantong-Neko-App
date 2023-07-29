@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->text("description");
             $table->string("image");
             $table->integer("stock");
+            $table->integer("xp_price");
             $table->date("start_date");
             $table->date("end_date");
             $table
