@@ -24,12 +24,23 @@ Route::get("first", function () {
     return Inertia::render("Home/First");
 })->name("first");
 
-Route::get("game", GameController::class)->name("game"); //page game
+Route::get("game", GameController::class)->name("game"); //pasge game
 Route::get("game/minigames", [GameController::class, "Minigames"]); //page minigames
 Route::get("game/minigames/eat", [GameController::class, "EatMiniGame"]); //page minigames
+Route::get("game/minigames/run", [GameController::class, "EndlessRun"]); //page minigames
 Route::get("game/wardrobe", [GameController::class, "Wardrobe"]); //page minigames
 
+Route::get("/quest/detail/{id}", [TaskController::class, "QuestDetail"])->name(
+    "quest.detail"
+);
+
+Route::get("/top-up", [TaskController::class, "TopUp"])->name("topUP");
+Route::post("/top-up", [TaskController::class, "PostTopUp"])->name("topUP");
+
+Route::get("quest", [TaskController::class, "QuestRewards"])->name("quest");
+
 Route::get("task", TaskController::class)->name("task"); //page task
+
 Route::middleware(["auth"])->group(function () {
     Route::middleware("auth.hasAccount")->group(function () {
         Route::get("game", GameController::class)->name("game"); //page game
@@ -51,6 +62,8 @@ Route::middleware(["auth"])->group(function () {
             Route::get("/select-account", "DaftarAccount")->name("daftarRek");
         });
     });
+
+    Route::get("task", TaskController::class)->name("task"); //page task
 });
 
 // Route::get("/", function () {

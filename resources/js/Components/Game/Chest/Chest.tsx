@@ -72,11 +72,17 @@ export default function Chest({ }: any) {
     return (
         <>
             <div id="Chest" onClick={handleChestClick}>
-                <Sparkles>
+                {points >= 50 ?
+                    <Sparkles>
+                        <div id="Chest_image_container">
+                            <img id="Chest_image" src="https://www.svgrepo.com/show/275527/treasure-chest.svg" alt="chest" />
+                        </div>
+                    </Sparkles>
+                    :
                     <div id="Chest_image_container">
                         <img id="Chest_image" src="https://www.svgrepo.com/show/275527/treasure-chest.svg" alt="chest" />
                     </div>
-                </Sparkles>
+                }
                 <div id="right">
                     <h1 id="Chest_title" className={points >= 50 ? "text-green-500" : "text-red-500"}>
                         50/{points} Point
@@ -108,7 +114,7 @@ export default function Chest({ }: any) {
                     <h1>Tekan untuk buka peti harta!</h1>
                 </div>
             }
-            <Modal className="Chest_notif"  open={notif} onOk={handleOk} onCancel={handleCancel}>
+            <Modal className="Chest_notif" open={notif} onOk={handleOk} onCancel={handleCancel}>
                 Selamat anda mendapatkan 1000 koin!
             </Modal>
         </>

@@ -17,11 +17,11 @@ export default function Minigame() {
                 <div id="Minigamelist">
                     <Link className='Card' href="/game/minigames/eat">
                         <img src="https://www.svgrepo.com/show/429377/bibimbub-cooking-food.svg" alt="" />
-                        Eat</Link>
+                        Lunch</Link>
 
-                    <Link className='Card' href="/game/minigames/eat">
-                        <img src="https://www.svgrepo.com/show/429377/bibimbub-cooking-food.svg" alt="" />
-                        Eat</Link>
+                    <Link className='Card' href="/game/minigames/run">
+                        <img src="https://www.svgrepo.com/show/412803/run.svg" alt="" />
+                        Endless Run</Link>
                 </div>
             </div>
         </>

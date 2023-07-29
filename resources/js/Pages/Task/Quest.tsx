@@ -1,8 +1,7 @@
-import React from "react";
+import { Link } from "@inertiajs/react";
 import Layout from "@/Layouts/AppLayout";
 import bg from "./Assets/bg.svg";
 import { useState } from "react";
-import { List } from "antd";
 import Lottie from "lottie-react";
 import "./Quest.css";
 import animationData from "./Assets/animation_lkn2qa7f.json";
@@ -13,10 +12,10 @@ export default function Task(props: any) {
     console.log(props);
     const [active, setActive] = useState(0);
     const questsArr = [
-        { title: "MENCARI SI NEKO", status: true },
-        { title: "SEBUAH RAHASIA", status: false },
-        { title: "SIAPAKAH ITU", status: false },
-        { title: "SIAPAKAH ITU", status: false },
+        { id: 1, title: "MENCARI SI NEKO", status: true },
+        { id: 2, title: "SEBUAH RAHASIA", status: false },
+        { id: 3, title: "SIAPAKAH ITU", status: false },
+        { id: 1, title: "SIAPAKAH ITU", status: false },
     ];
 
     // const rewardsArr = [
@@ -89,7 +88,7 @@ export default function Task(props: any) {
                 </div>
             </div>
             <div>
-                <div className="relative flex z-20 border-[#7e29cd] bg-white border-4 rounded-[2rem] p-1">
+                <div className="relative flex z-20 text-[#7e29cd] border-[#7e29cd] bg-white border-4 rounded-[2rem] p-1">
                     <div
                         style={{
                             left: active == 0 ? "4px" : "calc(50% - 4px)",
@@ -129,24 +128,33 @@ export default function Task(props: any) {
 
 const Quests = ({ data }: any) => {
     return (
-        <div className="p-4">
-            {data.map((e: any) => {
-                return (
-                    <div className="flex justify-between p-2">
-                        <div className="flex gap-4">
-                            <img src="https://cdn.discordapp.com/attachments/1134526928834015253/1134538232550408302/Search.png" />
-                            <span>{e.title}</span>
+        <Link href={"/quest/detail/" + (data.id - 1)}>
+            <div className="p-4">
+                {data.map((e: any) => {
+                    return (
+                        <div className="flex justify-between p-2">
+                            <div className="flex gap-4">
+                                <img src="https://cdn.discordapp.com/attachments/1134526928834015253/1134538232550408302/Search.png" />
+                                <span
+                                    className={
+                                        "text-[#7e29cd] " +
+                                        (e.status && " line-through")
+                                    }
+                                >
+                                    {e.title}
+                                </span>
+                            </div>
+                            <input
+                                className={"border-[#7e29cd] accent-[#7e29cd] "}
+                                type="checkbox"
+                                checked={e.status}
+                                readOnly
+                            />
                         </div>
-                        <input
-                            className={"border-[#7e29cd] accent-[#7e29cd] "}
-                            type="checkbox"
-                            checked={e.status}
-                            readOnly
-                        />
-                    </div>
-                );
-            })}
-        </div>
+                    );
+                })}
+            </div>
+        </Link>
     );
 };
 
