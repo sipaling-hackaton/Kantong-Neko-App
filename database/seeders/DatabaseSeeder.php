@@ -8,6 +8,7 @@ use Database\Seeders\AccountSeeder;
 use Database\Seeders\TermsSavingsSeeder;
 use Database\Seeders\MerchantPartnersSeeder;
 use Database\Seeders\UserSeeder;
+use Database\Seeders\AvatarAttrSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            AvatarAttrSeeder::class,
             UserSeeder::class,
             AccountSeeder::class,
             TermsSavingsSeeder::class,

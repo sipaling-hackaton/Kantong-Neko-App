@@ -102,8 +102,8 @@ export default function Login({
                             checked={data.remember}
                             onChange={handleInputChange}
                         />
-                        <span className="ml-2 text-sm text-gray-600">
-                            Remember me
+                        <span className="text-white ml-2 text-sm text-gray-600">
+                            Ingat username
                         </span>
                     </label>
                 </div>
@@ -116,7 +116,7 @@ export default function Login({
                 </button>
                 <Link href="/register">
                     <button className="mt-4 p-2 w-full bg-[#58cc02] text-white rounded-[2rem]">
-                        Sudah Punya Akun
+                        Belum Punya Akun
                     </button>
                 </Link>
             </form>

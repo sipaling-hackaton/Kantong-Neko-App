@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Poppins");
+
+@font-face {
+    font-family: Mouse Memoirs;
+    src: url("../../public/font/Mouse\ Memoirs/@tailwind");
+}
+
+.font-mouse {
+    font-family: Mouse Memoirs;
+}

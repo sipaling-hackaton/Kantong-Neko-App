@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Helpers\Enum;
 use App\Models\Account;
 use App\Models\MerchantProduct;
+use App\Models\Avatar;
 
 class UserSeeder extends Seeder
 {
@@ -37,5 +38,25 @@ class UserSeeder extends Seeder
 
         $acc = new Account($accountData);
         $user->accounts()->save($acc);
+
+        User::create([
+            "ktp_id" => "3674092009120002",
+            "username" => "ADRIANFINANTYO",
+            "phone_number" => "082114188134",
+            "gender" => Enum::GENDER["Man"],
+            "birthdate" => "2023-07-31",
+            "email" => "adrianfinantyo@gmail.com",
+            "password" => Hash::make("adrian07"),
+        ]);
+
+        User::create([
+            "ktp_id" => "098320894",
+            "username" => "KOONGH",
+            "phone_number" => "92348304",
+            "gender" => Enum::GENDER["Man"],
+            "birthdate" => "2003-11-11",
+            "email" => "koonghiap123@gmail.com",
+            "password" => Hash::make("Koongh11103"),
+        ]);
     }
 }

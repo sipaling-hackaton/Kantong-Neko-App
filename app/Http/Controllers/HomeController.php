@@ -15,14 +15,14 @@ class HomeController extends Model
         $user["bankAccounts"] = Service::getListBankAccount(
             $request->session()->get("token")
         );
-        $activeAccount = Service::getBankAccountData(
-            $request->session()->get("token"),
-            5859455693053699
-        );
+        // $activeAccount = Service::getBankAccountData(
+        //     $request->session()->get("token"),
+        //     5859455693053699
+        // );
         return Inertia::render("Home/Home", [
             "token" => $request->session()->get("token"),
             "user" => $user,
-            "activeAccount" => $activeAccount,
+            // "activeAccount" => $activeAccount,
             "errors" => session("errors"),
             "auth" => $request->user(),
         ]);

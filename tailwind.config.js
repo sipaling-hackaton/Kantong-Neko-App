@@ -13,8 +13,8 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                mouse: ["Mouse Memoirs"],
-                poppins: ["Poppins"],
+                mouse: ["Mouse Memoirs", "regular"],
+                poppins: ["Poppins", "sans-serif"],
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
         },
