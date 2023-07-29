@@ -74,15 +74,16 @@ class Service
                 $res->json()["success"] == Constant::STATUS_SUCCESS
             ) {
                 $activeAccount = $res->json()["data"];
-                $termsSavings = TermsSavings::where(
-                    "account_id",
+                $account = Account::where(
+                    "account_number",
                     $accountNumber
                 )->first();
+                $termsSavings = $account->termsSavings;
                 $termsSavings["instalment"] = ceil(
                     $termsSavings["target_amount"] /
                         $termsSavings["time_period"]
                 );
-
+                $avatar = $account->avatar;
                 // Calculate the progress of the savings in percentage
                 $termsSavings["amount_progress"] =
                     $activeAccount["balance"] > 0
@@ -93,6 +94,7 @@ class Service
                         )
                         : 0;
                 $activeAccount["termsSavings"] = $termsSavings;
+                $activeAccount["avatar"] = $avatar;
                 return $activeAccount;
             }
             throw new Exception("Gagal mengambil data rekening");

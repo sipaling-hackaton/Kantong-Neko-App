@@ -13,4 +13,9 @@ class Enum
         "Active" => "active",
         "Inactive" => "inactive",
     ];
+
+    public const AVATAR_ATTRIBUTE_TYPE = [
+        "Hat" => "hat",
+        "Ribbon" => "ribbon",
+    ];
 }

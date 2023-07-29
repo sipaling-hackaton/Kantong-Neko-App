@@ -4,7 +4,7 @@ import bg from "./Assets/bg.svg";
 import { useState } from "react";
 import { List } from "antd";
 import Lottie from "lottie-react";
-import "./Task.css";
+import "./Quest.css";
 import animationData from "./Assets/animation_lkn2qa7f.json";
 import checked from "./Assets/cheked.svg";
 import circleBox from "./Assets/circleBox.svg";
@@ -94,7 +94,7 @@ export default function Task() {
                             left: active == 0 ? "4px" : "calc(50% - 4px)",
                             // right: active == 1 ? "0px" : "",
                             alignSelf: "center",
-                            transition: "2s ease",
+                            transition: "0.8s ease",
                         }}
                         className="absolute z-10 rounded-[2rem] bg-[#7e29cd] w-1/2 h-[2.5rem]"
                     >

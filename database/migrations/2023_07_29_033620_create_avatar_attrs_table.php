@@ -11,13 +11,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create("accounts", function (Blueprint $table) {
+        Schema::create("avatar_attrs", function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->enum("gender", Enum::GENDER);
-            $table->date("birthdate");
-            $table->float("exp");
-            $table->foreignId("user_id")->constrained("users");
+            $table->enum("type", Enum::AVATAR_ATTRIBUTE_TYPE);
+            $table->string("asset_url");
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists("accounts");
+        Schema::dropIfExists("avatar_attrs");
     }
 };
