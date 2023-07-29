@@ -28,25 +28,27 @@ class GameController extends Controller
     }
 
 
-    public function EndlessRun()
+    public function EndlessRun(Request $request)
     {
-        return Inertia::render('Game/Minigame/EndlessRun/EndlessRun');
+        return Inertia::render('Game/Minigame/EndlessRun/EndlessRun',[
+            "activeAccount" => $request->activeAccount,
+        ]);
     }
-    public function EatMiniGame()
+    public function EatMiniGame(Request $request)
     {
-        return Inertia::render("Game/Minigame/Eat/Eat");
+        return Inertia::render("Game/Minigame/Eat/Eat", [
+            "activeAccount" => $request->activeAccount,
+        ]);
     }
 
     // wardrobe
-    public function Wardrobe(AvatarAttr $avatarAttr, Avatar $avatar, Service $service)
+    public function Wardrobe(Request $request, AvatarAttr $avatarAttr)
     {
         $avatarAttr = AvatarAttr::all();
-        // $current = $service->getUserData(); 
-        // $avatar = Avatar::all()->where('user_id', auth()->user()->id)->first();
         return Inertia::render('Game/Wardrobe/Wardrobe', [
             'ItemData' => $avatarAttr,
-            'current' => $avatar
+            "activeAccount" => $request->activeAccount,
+            "avatar" => "avatar cek",
         ]);
-
     }
 }

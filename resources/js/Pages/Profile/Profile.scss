@@ -1,0 +1,137 @@
+#Profile {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+    padding: 1rem;
+
+
+    #title {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+
+    #top {
+        display: flex;
+        justify-content: left;
+        // align-items: center;
+        gap: 1rem;
+        width: 100%;
+        // border: 1px solid black;
+        padding: 1rem;
+
+        #profile_avatar {
+            width: 100px;
+            height: 100px;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #dfdf0e;
+
+            img {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+            }
+        }
+
+        #profile_user {
+            font-weight: bold;
+            font-size: 1.5rem;
+
+            h2 {
+                text-transform: lowercase;
+            }
+
+            #accountNo {
+                font-size: 1rem;
+                font-weight: normal;
+                color: #a7a7a7;
+            }
+        }
+    }
+
+
+
+    #account {
+        background-color: #d7d7a7;
+        width: 90%;
+        height: fit-content;
+        margin: auto;
+        padding: 1rem;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+
+
+        h1 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+    }
+
+
+    #logout {
+        background-color: #cd0e0e;
+        width: 90%;
+        height: fit-content;
+        padding: 1rem;
+        margin: auto;
+        // margin-right: 1rem;
+        border-radius: 1rem;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.35);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            filter: invert(1);
+            width: 20px;
+            height: 20px;
+            margin-left: 1rem;
+        }
+    }
+}
+
+
+#merchant {
+    background-color: #ffffff;
+    width: 100%;
+    height: fit-content;
+    margin: none;
+    margin-block: 0.4rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    img {
+        width: 100px;
+        height: 100px;
+        aspect-ratio: 1/1;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #dfdf0e;
+        object-fit: contain;
+    }
+
+    #text {
+        h1 {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    }
+}

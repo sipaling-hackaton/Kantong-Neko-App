@@ -83,7 +83,7 @@ export default function BottomNav() {
                     />
                 </Link>
                 <Link
-                    href="/game"
+                    href="/profile"
                     style={{
                         height: "100%",
                         color: "black",

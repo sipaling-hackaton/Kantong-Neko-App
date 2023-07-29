@@ -16,7 +16,7 @@ import PingSfx from "@/Pages/Game/Minigame/Assets/Sounds/ping.mp3";
 import { Howl } from 'howler'
 import BottomNav from '@/Layouts/Components/BottomNav'
 
-export default function Eatgame() {
+export default function Eatgame({ activeAccount }: any) {
     const food: React.RefObject<HTMLDivElement> = useRef(null);
     const character: React.RefObject<HTMLDivElement> = useRef(null);
 
@@ -102,7 +102,7 @@ export default function Eatgame() {
         >
             <img src={BG} alt="" className="absolute w-full h-full object-cover brightness-90" />
             <div onPointerDown={startDrag} />
-            <Avatar Characterref={character} open={open} happy={Happy} />
+            <Avatar ribbon={activeAccount.avatar.hat} hat={activeAccount.avatar.ribbon} Characterref={character} open={open} happy={Happy} />
             <div id='Table'>
                 <Button onClick={prevFood}>Prev</Button>
                 <Object ObjectRef={food}

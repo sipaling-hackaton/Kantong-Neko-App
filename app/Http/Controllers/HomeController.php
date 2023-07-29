@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Inertia\Inertia;
 use App\Helpers\Service;
 use App\Models\Account;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Model
 {
