@@ -5,16 +5,16 @@ import TextInput from "@/Components/TextInput";
 
 const DaftarRekening = (props: any) => {
     const { data, setData, post, processing, errors, reset } = useForm({
-        id: "",
         name: "",
-        gender: 0,
+        gender: null,
         birthdate: "",
-        exp: 50,
+        target_amount: "",
+        time_priod: "",
     });
 
     const postBankAccount = (e: any) => {
         e.preventDefault();
-        post("/create-rekening");
+        post(route("daftarRek.store"));
     };
 
     const handleInputChange = (e: any) => {
@@ -28,21 +28,23 @@ const DaftarRekening = (props: any) => {
 
     return (
         <div className="flex flex-col bg-[#fdb202] justify-center items-center min-h-[100vh]">
-            <h1 className="text-white font-poppins">DAFTAR AKUN REKENING</h1>
-            <form onSubmit={postBankAccount}>
+            <h1 className="text-white font-mouse text-[2rem]">
+                DAFTAR AKUN REKENING
+            </h1>
+            <form className="mt-[5vh]" onSubmit={postBankAccount}>
                 <div>
                     <InputLabel
                         className="text-white"
-                        htmlFor="username"
-                        value="Username"
+                        htmlFor="name"
+                        value="Nama Lengkap"
                     />
                     <TextInput
-                        id="username"
+                        id="name"
                         type="text"
                         name="name"
                         value={data.name}
                         className="mt-1 block w-full"
-                        autoComplete="username"
+                        autoComplete="name"
                         isFocused={true}
                         onChange={handleInputChange}
                     />
@@ -78,6 +80,7 @@ const DaftarRekening = (props: any) => {
 
                     <InputError message={errors.gender} className="mt-2" />
                 </div>
+
                 <div className="mt-4">
                     <InputLabel
                         className="mt-2 text-white"
@@ -96,6 +99,47 @@ const DaftarRekening = (props: any) => {
                         required
                     />
                     <InputError message={errors.birthdate} className="mt-2" />
+                </div>
+                <div className="mt-4">
+                    <InputLabel
+                        className="text-white"
+                        htmlFor="name"
+                        value="Target Tabungan"
+                    />
+                    <TextInput
+                        id="name"
+                        type="number"
+                        name="target_amount"
+                        value={data.name}
+                        className="mt-1 block w-full"
+                        autoComplete="number"
+                        isFocused={true}
+                        onChange={handleInputChange}
+                    />
+
+                    <InputError
+                        message={errors.target_amount}
+                        className="mt-2"
+                    />
+                </div>
+                <div className="mt-4">
+                    <InputLabel
+                        className="text-white"
+                        htmlFor="time_period"
+                        value="Waktu Menabung dalam bulan yang ingin dicapai"
+                    />
+                    <TextInput
+                        id="time_priod"
+                        type="number"
+                        name="time_period"
+                        value={data.name}
+                        className="mt-1 block w-full"
+                        autoComplete="time"
+                        isFocused={true}
+                        onChange={handleInputChange}
+                    />
+
+                    <InputError message={errors.time_priod} className="mt-2" />
                 </div>
                 <button
                     className=" mt-4 w-full p-2 bg-[#58cc02] text-white rounded-[2rem]"

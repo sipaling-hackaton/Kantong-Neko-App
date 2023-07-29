@@ -10,6 +10,7 @@ use App\Models\Account;
 use App\Models\MerchantPartner;
 use App\Models\MerchantProduct;
 use App\Models\Avatar;
+use App\Models\User;
 
 class Service
 {
@@ -27,7 +28,12 @@ class Service
                 $res->successful() &&
                 $res->json()["success"] == Constant::STATUS_SUCCESS
             ) {
-                return $res->json()["data"];
+                $user = $res->json()["data"];
+                $user["serverUserId"] = User::where(
+                    "username",
+                    $user["username"]
+                )->first()->id;
+                return $user;
             }
             throw new Exception("Gagal mengambil data user");
         } catch (Exception $e) {
@@ -52,7 +58,9 @@ class Service
                 $arrAccount = [];
                 foreach ($res->json()["data"]["accounts"] as $account) {
                     $account = Account::find($account["accountNo"]);
-                    array_push($arrAccount, $account);
+                    if ($account) {
+                        array_push($arrAccount, $account);
+                    }
                 }
                 return $arrAccount;
             }
@@ -106,7 +114,7 @@ class Service
             }
             throw new Exception("Gagal mengambil data rekening");
         } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            throw Exception($e->getMessage());
         }
     }
 
@@ -131,6 +139,7 @@ class Service
                 $res->successful() &&
                 $res->json()["success"] == Constant::STATUS_SUCCESS
             ) {
+                $account->id = $res->json()["data"]["accountNo"];
                 $user = User::find($userId);
                 $user->accounts()->save($account);
                 return $user;
@@ -159,6 +168,110 @@ class Service
             return $tempAcc;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
+        }
+    }
+
+    /**
+     * Get list of rewards from merchant partners
+     */
+    public static function getRewardList()
+    {
+        try {
+            $merch = MerchantProduct::with("merchantPartner")->get();
+            return $merch;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    /**
+     * Add exp to the account
+     */
+    public static function addExp($accountId, $value)
+    {
+        try {
+            $account = Account::find($accountId);
+            if (!$account) {
+                throw new Exception("Akun tidak ditemukan");
+            }
+            $account->exp += $value;
+            $account->save();
+            return $account;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    /**
+     * Reduce exp from the account
+     */
+    public static function reduceExp($accountId, $value)
+    {
+        try {
+            $account = Account::find($accountId);
+            if (!$account) {
+                throw new Exception("Akun tidak ditemukan");
+            }
+            $account->exp -= $value;
+            $account->save();
+            return $account;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    /**
+     * Get list of avatar attributes
+     */
+    public static function getListAvatarAttr()
+    {
+        try {
+            return AvatarAttr::all();
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    /**
+     * Update avatar attributes
+     */
+    public static function updateAvatar(
+        $accountId,
+        $hatId = null,
+        $ribbonId = null
+    ) {
+        try {
+            $account = Account::find($accountId);
+            if (!$account) {
+                throw new Exception("Akun tidak ditemukan");
+            }
+            $account->avatar->hat_id = $hatId;
+            $account->avatar->ribbon_id = $ribbonId;
+            $account->avatar->save();
+            return $account;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    /**
+     * Add balance to the account
+     */
+    public static function AddBalance($accessToken, $activeAccountId, $balance)
+    {
+        try {
+            $res = Http::withToken($accessToken)->post(
+                env("HACKATHON_API_URL") . "/bankAccount/addBalance",
+                [
+                    "receiverAccountNo" => $activeAccountId,
+                    "amount" => $balance,
+                ]
+            );
+            return $res->json();
+
+            throw new Exception("Gagal menambahkan balance");
+        } catch (Exception $err) {
+            throw new Exception($err->getMessage());
         }
     }
 }

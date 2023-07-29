@@ -17,6 +17,15 @@ class Account extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "id",
+        "name",
+        "gender",
+        "birthdate",
+        "exp",
+        "user_id",
+    ];
+
     protected static function boot()
     {
         parent::boot();
