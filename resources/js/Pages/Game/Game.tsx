@@ -1,40 +1,70 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Guest from "@/Layouts/GuestLayout";
 import Eatgame from "@/Components/Game/Minigames/Eatgame/Eatgame";
 import { Avatar } from "@/Components/Game/Avatar";
 import EndlessRun from "@/Components/Game/Minigames/EndlessRun/EndlessRun";
 import { Link } from "@inertiajs/react";
 import BG from "@/Pages/Game/Minigame/Assets/Images/background.svg";
+import Chest from "@/Components/Game/Chest/Chest";
+import "./Game.scss";
+// import useSound from "use-sound";
+// import ReactHowler, { } from "react-howler";
+import { Howl } from "howler";
+import ClickSfx from "@/Pages/Game/Minigame/Assets/Sounds/click.mp3";
+import PingSfx from "@/Pages/Game/Minigame/Assets/Sounds/ping.mp3";
+import WardrobeData from "@/Pages/Game/Wardrobe/WardrobeData.json";
+import AppLayout from "@/Layouts/AppLayout";
+
+export default function Game({ ItemData, activeAccount }: any) {
 
 
-export default function Game() {
-    return <div style={{
-        width: '100vw',
-        height: '100vh',
-        overflow: 'hidden',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        backgroundImage: BG,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-    }}>
-        <img src={BG} alt="" className="z-[-1] absolute" style={{
-            filter: 'brightness(0.8)',
-        }} />
-        {/* <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-700">
-                <div className="bg-blue-600 h-1.5 rounded-full dark:bg-blue-500" style={{ width: '45%' }}></div>
-            </div> */}
-        <Link href="/game/minigames" className="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow">
-            <div className="absolute inset-0 w-3 bg-amber-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-            <span className="relative text-black group-hover:text-white">Mini Games</span>
-        </Link>
-        test
-        <Avatar />
-    </div>;
+    var Sound = new Howl({
+        src: [ClickSfx],
+    });
+
+    var soundTwo = new Howl({
+        src: [PingSfx],
+    });
+
+    // placeholder
+    // const wardrobe = WardrobeData[0];
+    // 
+    // useEffect(() => {
+    //     console.log(ItemData);
+    //     console.log(activeAccount);
+    // }, [])
+    var sound: any = null;
+    function playSound(SFX: any) {
+        //check if sound is null, if not stop previous sound and unload it
+        if (sound != null) {
+            sound.stop();
+            sound.unload();
+            sound = null;
+        }
+        sound = new Howl({
+            src: [SFX]
+        });
+        sound.play();
+    }
+
+    return (<> <div
+        id="Game_page">
+        <img src={BG} id="bg" />
+        <Chest />
+        <Avatar ribbon={activeAccount.avatar.hat} hat={activeAccount.avatar.ribbon} />
+        <div id="Navigate">
+            <Link onClick={() => playSound(ClickSfx)} href="/game/minigames" className="ButtonNav">
+                <img src="https://www.svgrepo.com/show/95376/game-controller.svg" alt="" />
+                {/* Mini Games */}
+            </Link>
+            <Link onClick={() => playSound(PingSfx)} href="/game/wardrobe" className="ButtonNav">
+                <img src="https://www.svgrepo.com/show/234613/clothes-shirt.svg" alt="" />
+                {/* Wardrobe */}
+            </Link>
+        </div>
+    </div >
+    </>
+    );
 }
 
-
-
-Game.layout = (page: any, logo: any) => <Guest children={page} />;
+Game.layout = (page: any, logo: any) => <AppLayout children={page} />;
