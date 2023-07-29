@@ -176,7 +176,7 @@ const Rewards = ({ data, activeAccount }: any) => {
         setIsModalOpen(false);
         if (cost < activeAccount.exp) {
             setData("exp", cost);
-            post("/");
+            // post("/");
         }
     };
 
