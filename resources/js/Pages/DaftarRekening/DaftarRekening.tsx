@@ -14,7 +14,7 @@ const DaftarRekening = (props: any) => {
 
     const postBankAccount = (e: any) => {
         e.preventDefault();
-        post("/create-rekening");
+        post(route("daftarRek.store"));
     };
 
     const handleInputChange = (e: any) => {
@@ -28,8 +28,10 @@ const DaftarRekening = (props: any) => {
 
     return (
         <div className="flex flex-col bg-[#fdb202] justify-center items-center min-h-[100vh]">
-            <h1 className="text-white font-poppins">DAFTAR AKUN REKENING</h1>
-            <form onSubmit={postBankAccount}>
+            <h1 className="text-white font-mouse text-[2rem]">
+                DAFTAR AKUN REKENING
+            </h1>
+            <form className="mt-[5vh]" onSubmit={postBankAccount}>
                 <div>
                     <InputLabel
                         className="text-white"

@@ -7,6 +7,8 @@ const SelectAccount = (props: any) => {
         account_id: "",
     });
 
+    console.log(props);
+
     useEffect(() => {
         if (data.account_id !== "") {
             post(route("home.store"));
@@ -30,8 +32,8 @@ const SelectAccount = (props: any) => {
     };
 
     return (
-        <div className="bg-[#fdb202] min-h-screen">
-            <h1 className="text-white text-center font-poppins font-[2rem] ">
+        <div className="bg-[#fdb202] min-h-screen flex flex-col gap-[20vh] items-center">
+            <h1 className="mt-[10vh] text-white text-center font-poppins text-[2rem] font-mouse">
                 Pilih Atau Tambah Rekening
             </h1>
             <div className="w-screen flex flex-wrap p-4 gap-4 justify-center items-center">
@@ -39,14 +41,17 @@ const SelectAccount = (props: any) => {
                     props.listAccount.map((e: any, index: number) => {
                         return (
                             <button
-                                className="w-1/4 bg-white rounded-[2rem] p-4"
+                                className="w-1/3 self-stretch bg-white rounded-[2rem] p-4"
                                 onClick={() => handleInputChange(e.id)}
                             >
                                 <img src={randomImg()} />
+                                <span className="font-poppins font-bold text-[#613625]">
+                                    {e.name}
+                                </span>
                             </button>
                         );
                     })}
-                <Link className="w-1/4" href="/daftar-rekening">
+                <Link className="w-1/3 self-stretch" href="/daftar-rekening">
                     <div className="bg-white w-full p-4 rounded-[2rem]">
                         <img
                             src={"https://www.svgrepo.com/show/522234/plus.svg"}

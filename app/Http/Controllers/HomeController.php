@@ -62,10 +62,12 @@ class HomeController extends Model
 
         $request->session()->put("accessToken", $request);
 
-        dd($user);
-        $id = Http::post(env("HACKATHON_API_URL") . "/bankAccount/create", [
-            "balance" => 0,
-        ]);
+        $id = Http::withToken($accessToken)->pos(
+            env("HACKATHON_API_URL") . "/bankAccount/create",
+            [
+                "balance" => 0,
+            ]
+        );
 
         $request->validate([
             "id" => $id,
