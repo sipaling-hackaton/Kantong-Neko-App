@@ -24,11 +24,11 @@ Route::get("first", function () {
     return Inertia::render("Home/First");
 })->name("first");
 
-Route::get("game", GameController::class)->name("game"); //pasge game
-Route::get("game/minigames", [GameController::class, "Minigames"]); //page minigames
-Route::get("game/minigames/eat", [GameController::class, "EatMiniGame"]); //page minigames
-Route::get("game/minigames/run", [GameController::class, "EndlessRun"]); //page minigames
-Route::get("game/wardrobe", [GameController::class, "Wardrobe"]); //page minigames
+// Route::get("game", GameController::class)->name("game"); //pasge game
+// Route::get("game/minigames", [GameController::class, "Minigames"]); //page minigames
+// Route::get("game/minigames/eat", [GameController::class, "EatMiniGame"]); //page minigames
+// Route::get("game/minigames/run", [GameController::class, "EndlessRun"]); //page minigames
+// Route::get("game/wardrobe", [GameController::class, "Wardrobe"]); //page minigames
 
 Route::get("/quest/detail/{id}", [TaskController::class, "QuestDetail"])->name(
     "quest.detail"
@@ -41,15 +41,33 @@ Route::get("task", TaskController::class)->name("task"); //page task
 Route::middleware(["auth"])->group(function () {
     Route::middleware("auth.hasAccount")->group(function () {
         Route::get("game", GameController::class)->name("game"); //page game
-        Route::get('game/minigames', [GameController::class, 'Minigames']); //page minigames
-        Route::get('game/minigames/eat', [GameController::class, 'EatMiniGame']); //page minigames
-        Route::get('game/minigames/run', [GameController::class, 'EndlessRun']); //page minigames
-        Route::get('game/wardrobe', [GameController::class, 'Wardrobe']); //page minigames
-        Route::get('profile', ProfileController::class)->name('profile'); //page profile
-        Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit'); //page profile
-        Route::get('profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy'); //page profile
-        Route::get('profile/update', [ProfileController::class, 'update'])->name('profile.update'); //page profile
-        Route::get('profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy'); //page profile
+        Route::get("game/minigames", [GameController::class, "Minigames"]); //page minigames
+        Route::get("game/minigames/eat", [
+            GameController::class,
+            "EatMiniGame",
+        ]); //page minigames
+        Route::get("game/minigames/run", [GameController::class, "EndlessRun"]); //page minigames
+        Route::get("game/wardrobe", [GameController::class, "Wardrobe"]); //page minigames
+        Route::post("game/wardrobe", [
+            GameController::class,
+            "WardrobeStore",
+        ])->name("wardrobe.update");
+        Route::get("profile", ProfileController::class)->name("profile"); //page profile
+        Route::get("profile/edit", [ProfileController::class, "edit"])->name(
+            "profile.edit"
+        ); //page profile
+        Route::get("profile/delete", [
+            ProfileController::class,
+            "destroy",
+        ])->name("profile.destroy"); //page profile
+        Route::get("profile/update", [
+            ProfileController::class,
+            "update",
+        ])->name("profile.update"); //page profile
+        Route::get("profile/destroy", [
+            ProfileController::class,
+            "destroy",
+        ])->name("profile.destroy"); //page profile
         Route::get("task", TaskController::class)->name("task"); //page task
         Route::get("quest", [TaskController::class, "QuestRewards"])->name(
             "quest"

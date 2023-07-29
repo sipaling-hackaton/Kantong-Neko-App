@@ -9,7 +9,7 @@ const DaftarRekening = (props: any) => {
         gender: null,
         birthdate: "",
         target_amount: "",
-        time_priod: "",
+        time_period: "",
     });
 
     const postBankAccount = (e: any) => {
@@ -31,7 +31,7 @@ const DaftarRekening = (props: any) => {
             <h1 className="text-white font-mouse text-[2rem]">
                 DAFTAR AKUN REKENING
             </h1>
-            <form className="mt-[5vh]" onSubmit={postBankAccount}>
+            <form className="mt-[5vh]  w-[65%%] " onSubmit={postBankAccount}>
                 <div>
                     <InputLabel
                         className="text-white"
@@ -110,7 +110,7 @@ const DaftarRekening = (props: any) => {
                         id="name"
                         type="number"
                         name="target_amount"
-                        value={data.name}
+                        value={data.target_amount}
                         className="mt-1 block w-full"
                         autoComplete="number"
                         isFocused={true}
@@ -126,20 +126,21 @@ const DaftarRekening = (props: any) => {
                     <InputLabel
                         className="text-white"
                         htmlFor="time_period"
-                        value="Waktu Menabung dalam bulan yang ingin dicapai"
+                        value="Waktu Menabung"
                     />
                     <TextInput
                         id="time_priod"
+                        placeholder="dalam bulan"
                         type="number"
                         name="time_period"
-                        value={data.name}
+                        value={data.time_period}
                         className="mt-1 block w-full"
                         autoComplete="time"
                         isFocused={true}
                         onChange={handleInputChange}
                     />
 
-                    <InputError message={errors.time_priod} className="mt-2" />
+                    <InputError message={errors.time_period} className="mt-2" />
                 </div>
                 <button
                     className=" mt-4 w-full p-2 bg-[#58cc02] text-white rounded-[2rem]"

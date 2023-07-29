@@ -126,6 +126,7 @@ class Service
         $accessToken,
         $userId,
         Account $account,
+        TermsSavings $termsSavings,
         $startBalance = 0
     ) {
         try {
@@ -142,6 +143,8 @@ class Service
                 $account->id = $res->json()["data"]["accountNo"];
                 $user = User::find($userId);
                 $user->accounts()->save($account);
+                $tempAcc = Account::find($account->id);
+                $tempAcc->currentSavings()->save($termsSavings);
                 return $user;
             }
             throw new Exception("Gagal membuat rekening baru");
@@ -174,10 +177,20 @@ class Service
     /**
      * Get list of rewards from merchant partners
      */
-    public static function getRewardList()
+    public static function getRewardList($accountId)
     {
         try {
-            $merch = MerchantProduct::with("merchantPartner")->get();
+            $account = Account::find($accountId);
+            if (!$account) {
+                throw new Exception("Akun tidak ditemukan");
+            }
+            $merch = MerchantProduct::with("merchantPartner")
+                ->whereDoesntHave("claimedBy", function ($query) use (
+                    $accountId
+                ) {
+                    $query->where("account_id", $accountId);
+                })
+                ->get();
             return $merch;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());

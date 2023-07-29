@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use App\Helpers\Service;
 use App\Models\Account;
 use Illuminate\Support\Facades\Http;
+use App\Models\TermsSavings;
 
 class HomeController extends Model
 {
@@ -56,6 +57,14 @@ class HomeController extends Model
 
     public function CreateRekening(Request $request)
     {
+        $request->validate([
+            "name" => "required|string",
+            "gender" => "required",
+            "birthdate" => "required|date",
+            "target_amount" => "required|integer|min:100000",
+            "time_period" => "required|integer|min:18|max:120",
+        ]);
+
         $accessToken = $request->session()->get("token");
         $user = Service::getUserData($accessToken);
 
@@ -66,11 +75,17 @@ class HomeController extends Model
             "exp" => 0,
         ]);
 
+        $newTermsSavings = new TermsSavings([
+            "target_amount" => $request->target_amount,
+            "time_period" => $request->time_period,
+        ]);
+
         try {
             $parentAcc = Service::createBankAccount(
                 $accessToken,
                 $user["serverUserId"],
-                $newAcc
+                $newAcc,
+                $newTermsSavings
             );
             return redirect()->intended("/daftar-rekening/select-account");
         } catch (Exception $e) {

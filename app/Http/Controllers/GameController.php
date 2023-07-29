@@ -15,22 +15,20 @@ class GameController extends Controller
     public function __invoke(Request $request, AvatarAttr $avatarAttr)
     {
         $avatarAttr = AvatarAttr::all();
-        return Inertia::render('Game/Game', [
-            'ItemData' => $avatarAttr,
+        return Inertia::render("Game/Game", [
+            "ItemData" => $avatarAttr,
             "activeAccount" => $request->activeAccount,
         ]);
     }
-
 
     public function Minigames()
     {
         return Inertia::render("Game/Minigame/Minigame");
     }
 
-
     public function EndlessRun(Request $request)
     {
-        return Inertia::render('Game/Minigame/EndlessRun/EndlessRun',[
+        return Inertia::render("Game/Minigame/EndlessRun/EndlessRun", [
             "activeAccount" => $request->activeAccount,
         ]);
     }
@@ -45,10 +43,21 @@ class GameController extends Controller
     public function Wardrobe(Request $request, AvatarAttr $avatarAttr)
     {
         $avatarAttr = AvatarAttr::all();
-        return Inertia::render('Game/Wardrobe/Wardrobe', [
-            'ItemData' => $avatarAttr,
+        return Inertia::render("Game/Wardrobe/Wardrobe", [
+            "ItemData" => $avatarAttr,
             "activeAccount" => $request->activeAccount,
-            "avatar" => "avatar cek",
         ]);
+    }
+
+    public function WardrobeStore(Request $request)
+    {
+        $account = $request->activeAccount;
+        $avatar = Avatar::where("account_id", $account["accountNo"])->first();
+        $avatar->update([
+            "hat_id" => $request->hat_id,
+            "ribbon_id" => $request->ribbon_id,
+        ]);
+        $avatar->save();
+        return redirect()->intended("/game/wardrobe");
     }
 }

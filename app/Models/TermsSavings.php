@@ -10,6 +10,15 @@ class TermsSavings extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "target_amount",
+        "time_period",
+        "start_date",
+        "end_date",
+        "is_active",
+        "account_id",
+    ];
+
     protected $cast = [
         "target_amount" => "float",
     ];
