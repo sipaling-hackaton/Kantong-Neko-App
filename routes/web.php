@@ -72,6 +72,9 @@ Route::middleware(["auth"])->group(function () {
         Route::get("quest", [TaskController::class, "QuestRewards"])->name(
             "quest"
         );
+        Route::post("quest", [TaskController::class, "ReduseExp"])->name(
+            "quest.reduce"
+        );
 
         Route::get("/top-up", [TaskController::class, "TopUp"])->name("topUP");
         Route::post("/top-up", [TaskController::class, "PostTopUp"])->name(

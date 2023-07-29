@@ -28,6 +28,14 @@ const DaftarRekening = (props: any) => {
 
     return (
         <div className="flex flex-col bg-[#fdb202] justify-center items-center min-h-[100vh]">
+            <Link href="/daftar-rekening/select-account">
+                <span
+                    style={{ top: "10px", left: "10px" }}
+                    className="fixed z-30 text-[1.5rem] font-poppins text-white"
+                >
+                    {"< Kembali"}
+                </span>
+            </Link>
             <h1 className="text-white font-mouse text-[2rem]">
                 DAFTAR AKUN REKENING
             </h1>

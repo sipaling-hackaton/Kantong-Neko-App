@@ -82,4 +82,12 @@ class TaskController extends Controller
 
         return redirect()->intended("/");
     }
+
+    public function ReduseExp(Request $request)
+    {
+        $account = $request->activeAccount;
+        $res = Service::reduceExp($account["accountNo"], $request->exp);
+
+        return Inertia::render("Quest/Quest");
+    }
 }

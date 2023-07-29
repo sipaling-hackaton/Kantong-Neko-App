@@ -24,7 +24,7 @@ export default function Profile({ activeAccount, merchantData }: any) {
     };
 
     return (
-        <div id="Profile">
+        <div className="relative" id="Profile">
             <h1 id="title">Profile</h1>
             <div id="top">
                 <div id="profile_avatar">

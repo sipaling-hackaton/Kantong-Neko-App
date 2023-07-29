@@ -14,7 +14,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
         >
             <div className="">{children}</div>
             <div
-                className="bg-[#f5f0e8]  z-10"
+                className="bg-[#f5f0e8]  z-10 "
                 style={{ height: "calc(10vh + 1rem)", width: "100vw" }}
             ></div>
             <BottomNav />
