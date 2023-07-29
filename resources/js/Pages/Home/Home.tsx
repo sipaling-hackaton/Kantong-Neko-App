@@ -10,10 +10,6 @@ import { Link } from "@inertiajs/react";
 moment.locale("id");
 
 export default function Home(props: any) {
-    useEffect(() => {
-        console.log(props);
-    }, []);
-
     const handleRemainingTargetDate = () => {
         const startDate = moment(props.activeAccount.termsSavings.start_date);
         const targetDate = startDate.add(

@@ -7,8 +7,6 @@ const SelectAccount = (props: any) => {
         account_id: "",
     });
 
-    console.log(props);
-
     useEffect(() => {
         if (data.account_id !== "") {
             post(route("home.store"));
