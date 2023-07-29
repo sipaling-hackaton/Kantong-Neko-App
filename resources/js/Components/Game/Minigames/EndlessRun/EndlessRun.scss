@@ -1,0 +1,174 @@
+#EndlessRunWrapper {
+    height: 100vh;
+    width: 100vw;
+    // background-color: burlywood;
+
+    #EndlessRunComponent {
+        display: flex;
+        // flex-direction: column;
+        border-bottom: 1px solid black;
+        justify-content: baseline;
+        align-items: baseline;
+        position: relative;
+        min-height: 50vh;
+        overflow: hidden;
+        box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+        overflow: hidden;
+
+        #bg {
+            isolation: isolate;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            scale: 1;
+
+        }
+
+        #Score {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            font-weight: bold;
+            color: rgb(107, 149, 44);
+            font-weight: 900;
+            text-align: left;
+            // animation: infinite title 1s ease-in-out;
+
+            @keyframes title {
+                0% {
+                    transform: scale(1);
+                }
+
+                50% {
+                    transform: scale(1.1);
+                }
+
+                100% {
+                    transform: scale(1);
+                }
+            }
+        }
+
+        #Chara {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            // border: 10px solid black;
+            bottom: 40px;
+            left: 20px;
+            // transform: translateY(100px);
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            // aspect-ratio: 1/1;
+            object-fit: contain;
+            // animation: infinite chara 1s ease-in-out;/
+            transition: transform 600ms cubic-bezier(0.075, 0.82, 0.965, 1);
+
+            &.jump {
+                transform: translateY(-200px);
+
+            }
+
+            @keyframes chara {
+                0% {
+                    transform: translateX(-100vw);
+                }
+
+                100% {
+                    transform: translateX(100vw);
+                }
+            }
+        }
+
+        #Block {
+            border: 4px solid black;
+            bottom: -20px;
+            position: absolute;
+            width: 100px;
+            aspect-ratio: 1/1;
+            // object-fit: 150% 150%;
+            animation: infinite block 3s ease-in-out;
+            background-color: rgb(107, 149, 44);
+            transition: transform 600ms cubic-bezier(0.075, 0.82, 0.965, 1);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+
+            @keyframes block {
+                0% {
+                    transform: translateX(100vw);
+                }
+
+                100% {
+                    transform: translateX(-100vw);
+                }
+            }
+        }
+    }
+
+}
+
+
+#GameOver {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    #GameOver_title {
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+        // color: rgb(107, 149, 44);
+        font-weight: 900;
+        text-align: center;
+        // animation: infinite title 1s ease-in-out;
+
+        @keyframes title {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    }
+
+
+    .button_cta {
+        background-color: rgb(107, 149, 44);
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 200ms ease-in-out;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+        width: 80%;
+        text-align: center;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}

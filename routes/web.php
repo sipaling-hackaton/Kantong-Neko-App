@@ -24,10 +24,13 @@ Route::get("first", function () {
     return Inertia::render("Home/First");
 })->name("first");
 
-Route::get("game", GameController::class)->name("game"); //page game
-Route::get("game/minigames", [GameController::class, "Minigames"]); //page minigames
-Route::get("game/minigames/eat", [GameController::class, "EatMiniGame"]); //page minigames
-Route::get("game/wardrobe", [GameController::class, "Wardrobe"]); //page minigames
+
+Route::get('game', GameController::class)->name('game'); //pasge game
+Route::get('game/minigames', [GameController::class, 'Minigames']); //page minigames
+Route::get('game/minigames/eat', [GameController::class, 'EatMiniGame']); //page minigames
+Route::get('game/minigames/run', [GameController::class, 'EndlessRun']); //page minigames
+Route::get('game/wardrobe', [GameController::class, 'Wardrobe']); //page minigames
+
 
 Route::get("task", TaskController::class)->name("task"); //page task
 Route::middleware(["auth"])->group(function () {
@@ -81,3 +84,4 @@ Route::middleware("auth")->group(function () {
 });
 
 require __DIR__ . "/auth.php";
+

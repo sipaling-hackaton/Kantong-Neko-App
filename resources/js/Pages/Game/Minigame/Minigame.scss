@@ -22,18 +22,19 @@
 
         .Card {
             aspect-ratio: 1/1;
-            background-color: rgb(228, 255, 255, 0.5);
+            background-color: rgba(78, 87, 87, 0.5);
             // background: linear-gradient(90deg, rgba(81, 255, 255, 0.5) 0%, rrgba(255, 60, 60, 0.5)100%);
             border-radius: 20px;
             margin: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+            // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
             cursor: pointer;
             font-size: 30px;
             font-weight: bold;
-            color: rgb(107, 149, 44);
+            color: rgb(233, 247, 213);
+            text-shadow: 0px 0px 10px rgba(202, 202, 202, 0.75);
             position: relative;
 
             img {

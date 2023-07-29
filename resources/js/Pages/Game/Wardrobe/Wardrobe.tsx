@@ -8,9 +8,9 @@ import Guest from '@/Layouts/GuestLayout'
 
 
 
-export default function Wardrobe() {
+export default function Wardrobe({ ItemData, current }: any) {
 
-    const wardrobe = WardrobeData[1 ];
+    // const wardrobe = WardrobeData[1];
     // useEffect(() => {
     //     wardrobe = localStorage.getItem('wardrobe');
     //     // console.log("this")
@@ -18,12 +18,16 @@ export default function Wardrobe() {
     // }, [])
 
     // console.log(wardrobe);
+
+    useEffect(() => {
+        console.log(current);
+    }, [])
     return (
         <div id='Wardrobe_page'>
-            <Avatar outfit={wardrobe} />
+            <Avatar />
             <div id='Wardrobe_list'>
                 {
-                    Data.map((item: any) => {
+                    ItemData.map((item: any) => {
                         return (
                             <WardrobeCard {...item} />
                         )
