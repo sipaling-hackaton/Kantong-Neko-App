@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\MerchantPartner;
+use App\Models\MerchantProduct;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -13,9 +15,22 @@ use Inertia\Response;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+
+    public function __invoke(Request $request, MerchantProduct $merchantProduct)
+    {
+
+        // $merchantProduct = MerchantProduct::all();
+        // $merchant = $request->user()->merchantProduct()->get();
+        // $user = $request->user();
+        // $merchant = MerchantPartner::all()->where('user_id', $user->id);
+        return Inertia::render('Profile/Profile', [
+            'activeAccount' =>  $request->activeAccount,
+            'merchantData' => $merchantProduct::all(),
+        ]);
+    }
+
+
+
     public function edit(Request $request): Response
     {
         return Inertia::render('Profile/Edit', [

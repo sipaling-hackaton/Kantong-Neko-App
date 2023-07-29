@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Avatar } from '../../Avatar';
 import "./EndlessRun.scss";
 import { useInterval } from './utils/UseInterval';
@@ -7,7 +7,7 @@ import { Button } from 'antd';
 import { Link } from '@inertiajs/react';
 import BG from "@/Pages/Game/Minigame/Assets/Images/background.svg";
 
-export default function EndlessRun() {
+export default function EndlessRun({ activeAccount }: any) {
   const [gameover, setGameover] = React.useState(false); // [state, setState
   const [score, setScore] = React.useState(0); // [state, setState
   const [jump, setJump] = React.useState(false);
@@ -21,6 +21,11 @@ export default function EndlessRun() {
     score > 1000 ? setScore(1000) : setScore(score + 1);
   }, 100);
 
+
+  useEffect(() => {
+    console.log("this is endless run");
+    console.log(activeAccount);
+  }, [])
   if (!gameover) {
     return (
       <div id='EndlessRunWrapper'
@@ -41,7 +46,7 @@ export default function EndlessRun() {
             ref={chara}
             className={jump ? 'jump' : "idle"}
           >
-            <Avatar size='0.3' />
+            <Avatar size='0.3' ribbon={activeAccount.avatar.hat} hat={activeAccount.avatar.ribbon} />
           </div>
           <div
             ref={block}

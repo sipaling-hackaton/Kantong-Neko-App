@@ -14,12 +14,25 @@ import { Modal } from "antd";
 export default function Chest({ }: any) {
     const [points, setPoints] = useState(80);
 
-    var soundTwo = new Howl({
-        src: [PingSfx]
-    });
-    var BonusSound = new Howl({
-        src: [BonusSfx]
-    });
+    // var BonusSound = new Howl({
+    //     src: [BonusSfx]
+    // });
+
+
+    var sound: any = null;
+    function playSound(SFX: any) {
+        //check if sound is null, if not stop previous sound and unload it
+        if (sound != null) {
+            sound.stop();
+            sound.unload();
+            sound = null;
+        }
+        sound = new Howl({
+            src: [SFX]
+        });
+        sound.play();
+    }
+
 
 
     const lottieRef = useRef<any>();
@@ -50,7 +63,7 @@ export default function Chest({ }: any) {
     const handleChestClick = (e: any) => {
         if (points < 50) return;
         e.stopPropagation();
-        soundTwo.play();
+        playSound(PingSfx);
         setOpened(false);
         setModal(true);
         setPoints(points - 50);
@@ -61,7 +74,8 @@ export default function Chest({ }: any) {
         if (opened === true) {
             setModal(false);
         } else {
-            BonusSound.play();
+            // BonusSound.play();
+            playSound(BonusSfx);
         }
         lottieRef.current.play();
         setOpened(true);
@@ -94,7 +108,7 @@ export default function Chest({ }: any) {
                             :
                             <p>Butuh {50 - points} lagi untuk klaim</p>
                     }
-                    <Progress percent={points >= 50 ? 100 : points} strokeColor={"green"} />
+                    <Progress percent={points >= 50 ? 50 : points} strokeColor={"green"} />
                 </div>
             </div>
 

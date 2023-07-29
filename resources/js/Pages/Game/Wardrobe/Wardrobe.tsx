@@ -5,26 +5,17 @@ import './Wardrobe.scss'
 import WardrobeData from './WardrobeData.json'
 import WardrobeCard from '@/Components/Game/Wardrobe/WardrobeCard'
 import Guest from '@/Layouts/GuestLayout'
+import { router } from '@inertiajs/react'
 
 
 
-export default function Wardrobe({ ItemData, current }: any) {
-
-    // const wardrobe = WardrobeData[1];
-    // useEffect(() => {
-    //     wardrobe = localStorage.getItem('wardrobe');
-    //     // console.log("this")
-    //     // console.log(wardrobe.id);
-    // }, [])
-
-    // console.log(wardrobe);
-
+export default function Wardrobe({ ItemData, activeAccount, avatar }: any) {
     useEffect(() => {
-        console.log(current);
+        console.log(activeAccount);
     }, [])
     return (
         <div id='Wardrobe_page'>
-            <Avatar />
+            <Avatar ribbon={activeAccount.avatar.hat} hat={activeAccount.avatar.ribbon} />
             <div id='Wardrobe_list'>
                 {
                     ItemData.map((item: any) => {
