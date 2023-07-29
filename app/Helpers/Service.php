@@ -161,4 +161,20 @@ class Service
             throw new Exception($e->getMessage());
         }
     }
+
+    public static function AddBalance(Request $request)
+    {
+        try {
+            $res = Http::withToken($accessToken)->post(
+                env("HACKATHON_API_URL") . "/bankAccount/addBalance",
+                [
+                    "receiverAccountNo" => $request->activeAccount,
+                    "amount" => $request->balance,
+                ]
+            );
+
+            throw new Exception("Gagal menambahkan balance");
+        } catch (Exception $err) {
+        }
+    }
 }
