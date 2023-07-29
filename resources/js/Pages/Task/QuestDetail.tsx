@@ -6,7 +6,7 @@ import Layout from "@/Layouts/AppLayout";
 
 export default function QuestDetail(props: any) {
     return (
-        <div className="relative w-screen min-h-screen">
+        <div className="mx-auto max-w-[700px] relative w-screen min-h-screen">
             <div className="">
                 <img className="absolute w-full z-10 " src={bg} />
                 <div className="pl-4 flex flex-col pt-8 relative z-20 text-white min-h-[40vh]">
@@ -39,9 +39,9 @@ export default function QuestDetail(props: any) {
                         500XP!
                     </span>
                 </div>
-                <div>
+                <div className="h-[100%]">
                     <Lottie
-                        className="max-h-max"
+                        className="h-[100%]"
                         animationData={animationData}
                     />
                 </div>

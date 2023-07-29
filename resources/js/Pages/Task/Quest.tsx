@@ -7,9 +7,11 @@ import "./Quest.css";
 import animationData from "./Assets/animation_lkn2qa7f.json";
 import checked from "./Assets/cheked.svg";
 import circleBox from "./Assets/circleBox.svg";
+import { useForm } from "@inertiajs/react";
+import { Modal } from "antd";
 
 export default function Task(props: any) {
-    console.log(props);
+    console.log(props.activeAccount);
     const [active, setActive] = useState(0);
     const questsArr = [
         { id: 1, title: "MENCARI SI NEKO", status: true },
@@ -38,15 +40,15 @@ export default function Task(props: any) {
 
     const questRewardsArrays = [
         <Quests data={questsArr} />,
-        <Rewards data={props.rewardList} />,
+        <Rewards data={props.rewardList} activeAccount={props.activeAccount} />,
     ];
 
     return (
-        <div className="min-h-[90vh] bg-[#F6F1E9]">
+        <div className="mx-auto max-w-[750px] min-h-[90vh] bg-[#F6F1E9]">
             <div className="relative flex flex-col text-center min-h-[50vh] items-center">
-                <img className="z-10 absolute w-screen  w-[100vw]" src={bg} />
+                <img className="z-10 absolute w-screen  w-[100%]" src={bg} />
                 <Lottie
-                    style={{ width: "60vw", bottom: "-0%", right: "3%" }}
+                    style={{ width: "60%", bottom: "-0%", right: "3%" }}
                     className="z-10 absolute"
                     animationData={animationData}
                 />
@@ -87,8 +89,8 @@ export default function Task(props: any) {
                     </div>
                 </div>
             </div>
-            <div>
-                <div className="relative flex z-20 text-[#7e29cd] border-[#7e29cd] bg-white border-4 rounded-[2rem] p-1">
+            <div className="">
+                <div className="relative flex z-20 text-[#7e29cd] border-[#7e29cd] bg-white border-4 rounded-[2rem] p-1 mx-4">
                     <div
                         style={{
                             left: active == 0 ? "4px" : "calc(50% - 4px)",
@@ -119,8 +121,9 @@ export default function Task(props: any) {
                         REWARDS
                     </span>
                 </div>
-
-                {questRewardsArrays[active]}
+                <div className="relative z-20">
+                    {questRewardsArrays[active]}
+                </div>
             </div>
         </div>
     );
@@ -128,10 +131,10 @@ export default function Task(props: any) {
 
 const Quests = ({ data }: any) => {
     return (
-        <Link href={"/quest/detail/" + (data.id - 1)}>
-            <div className="p-4">
-                {data.map((e: any) => {
-                    return (
+        <div className="p-4 relative z-20">
+            {data.map((e: any, index: any) => {
+                return (
+                    <Link className="" href={"/quest/detail/" + index}>
                         <div className="flex justify-between p-2">
                             <div className="flex gap-4">
                                 <img src="https://cdn.discordapp.com/attachments/1134526928834015253/1134538232550408302/Search.png" />
@@ -151,19 +154,46 @@ const Quests = ({ data }: any) => {
                                 readOnly
                             />
                         </div>
-                    );
-                })}
-            </div>
-        </Link>
+                    </Link>
+                );
+            })}
+        </div>
     );
 };
 
-const Rewards = ({ data }: any) => {
+const Rewards = ({ data, activeAccount }: any) => {
+    const { setData, post } = useForm({
+        exp: 0,
+    });
+    const [cost, setCost] = useState<number>(0);
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = (value: any) => {
+        setCost(value);
+        setIsModalOpen(true);
+    };
+
+    const handleOk = () => {
+        setIsModalOpen(false);
+        if (cost < activeAccount.exp) {
+            setData("exp", cost);
+            post("/");
+        }
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <div className="p-4 w-full flex flex-col gap-4">
-            {data.map((e: any) => {
+            {data.map((e: any, index: number) => {
                 return (
-                    <div className="flex justify-between p-4 gap-2 bg-white rounded-xl drop-shadow-sm">
+                    <div
+                        key={index}
+                        onClick={() => showModal(e.xp_price)}
+                        className="flex justify-between p-4 gap-2 bg-white rounded-xl drop-shadow-sm"
+                    >
                         <div className="flex flex-col text-[#7e29cd]">
                             <div className="font-mouse text-4xl">
                                 {e.xp_price} EXP
@@ -178,6 +208,22 @@ const Rewards = ({ data }: any) => {
                     </div>
                 );
             })}
+
+            <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <span>EXP Kamu Sekarang {activeAccount.exp}</span>
+                <br />
+                {cost > activeAccount.exp ? (
+                    <span>
+                        Kamu tidak bisa menukarkan exp kamu karena exp yang kamu
+                        miliki kurang dari yang dibutuhkan
+                    </span>
+                ) : (
+                    <span>
+                        Jika kamu menekan tombol ok maka exp yang kamu miliki
+                        akan berkurang
+                    </span>
+                )}
+            </Modal>
         </div>
     );
 };
